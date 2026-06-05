@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic HKSI Paper 1 & 6 Mock Engine</title>
+    <title>HKSI Paper 1 & 6 Tabbed Revision Engine</title>
     <style>
         :root {
             --primary: #0f4c81;
@@ -12,6 +12,7 @@
             --success: #38a169;
             --error: #e53e3e;
             --border: #cbd5e0;
+            --accent: #dd6b20;
         }
 
         body {
@@ -40,6 +41,40 @@
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
+        }
+
+        /* Tabs Interface Layout */
+        .tabs-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1px;
+        }
+
+        .tab-btn {
+            background: #e2e8f0;
+            color: #4a5568;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px 6px 0 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: -2px;
+        }
+
+        .tab-btn:hover {
+            background: #cbd5e0;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            border-top: 3px solid var(--primary);
+            border-bottom: 2px solid white;
         }
 
         .controls-panel {
@@ -84,7 +119,8 @@
 
         .q-meta {
             font-size: 0.85rem;
-            color: #718096;
+            color: var(--accent);
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
@@ -183,12 +219,19 @@
 
     <header>
         <div>
-            <h2 style="margin:0; font-size:1.3rem;">HKSI Dynamic Learning System</h2>
+            <h2 style="margin:0; font-size:1.3rem;">HKSI Modular Training Engine</h2>
         </div>
         <div id="timer">30:00</div>
     </header>
 
     <div class="container">
+        <!-- Tab Switches -->
+        <div class="tabs-container">
+            <button class="tab-btn active" id="tab-p1" onclick="switchMode('Paper 1')">HKSI Paper 1</button>
+            <button class="tab-btn" id="tab-p6" onclick="switchMode('Paper 6')">HKSI Paper 6</button>
+            <button class="tab-btn" id="tab-both" onclick="switchMode('Combined')">Combined Exam</button>
+        </div>
+
         <div class="controls-panel">
             <div>
                 <button class="btn btn-secondary" onclick="toggleLanguage('all')">Bilingual</button>
@@ -208,12 +251,12 @@
             <h2>Test Completed / 測試完畢</h2>
             <div class="score-big" id="score-display">0%</div>
             <p id="score-meta"></p>
-            <button class="btn" onclick="window.location.reload()">Generate New Test / 重新生成全新題目</button>
+            <button class="btn" onclick="regenerateCurrentTab()">Generate New Tab Test / 重新生成本帖題目</button>
         </div>
     </div>
 
     <script>
-        // High-variety database components targeting Paper 1 Licensing Regulations and Paper 6 Asset Management rules
+        // Deeply tagged rule database separation layers
         const subjects = [
             { en: "Securities and Futures Commission (SFC)", zh: "證券及期貨事務監察委員會（證監會）" },
             { en: "Mandatory Provident Fund Schemes Authority (MPFA)", zh: "強制性公積金計劃管理局（積金局）" },
@@ -221,112 +264,128 @@
         ];
 
         const rulesPool = [
-            {
-                en: "License Type 1 relates specifically to dealing in securities transactions.",
-                zh: "第1類受規管活動專指證券交易業務。",
-                paper: "Paper 1"
-            },
-            {
-                en: "License Type 4 governs advising on securities within Hong Kong frameworks.",
-                zh: "第4類受規管活動監管於香港架構內就證券提供意見。",
-                paper: "Paper 1"
-            },
-            {
-                en: "License Type 9 enables professionals to manage asset portfolios legally.",
-                zh: "第9類受規管活動容許專業人員合法地管理資產組合。",
-                paper: "Paper 6"
-            },
-            {
-                en: "Standard collective investment scheme applications target an approval window of 4 weeks.",
-                zh: "標準集體投資計劃申請的目標審批時間為4個星期。",
-                paper: "Paper 6"
-            },
-            {
-                en: "Non-standard fund applications usually experience longer customized assessment windows.",
-                zh: "非標準基金申請通常需要較長的特殊評估時間。",
-                paper: "Paper 6"
-            },
-            {
-                en: "The Product Key Facts Statement must accurately reflect core cross-border investment risks.",
-                zh: "產品資料概要必須準確反映核心跨境投資風險。",
-                paper: "Paper 6"
-            },
-            {
-                en: "Fund management companies must perform comprehensive stress testing at regular intervals.",
-                zh: "基金管理公司必須定期進行全面的壓力測試。",
-                paper: "Paper 6"
-            },
-            {
-                en: "All client assets must be kept strictly segregated from the intermediary's own house accounts.",
-                zh: "所有客戶資產必須與中介公司的自營帳戶嚴格分開管理。",
-                paper: "Paper 1"
-            }
+            // PAPER 1 RULES ONLY
+            { paper: "Paper 1", en: "License Type 1 relates specifically to dealing in securities transactions legally.", zh: "第1類受規管活動專指合法地進行證券交易業務。" },
+            { paper: "Paper 1", en: "License Type 4 governs advising on securities within established Hong Kong frameworks.", zh: "第4類受規管活動監管於香港既定架構內就證券提供意見。" },
+            { paper: "Paper 1", en: "All client assets must be kept strictly segregated from the intermediary's own house operating accounts.", zh: "所有客戶資產必須與中介公司的自營營運帳戶嚴格分開管理。" },
+            { paper: "Paper 1", en: "An executive officer of a registered institution requires prior approval from the HKMA.", zh: "註冊機構的主管人員必須預先獲得香港金融管理局的批准。" },
+            { paper: "Paper 1", en: "Intermediaries must guarantee that any marketing advertisements are not false, biased or misleading.", zh: "中介人必須確保任何市場推廣廣告均不含虛假、偏頗或誤導性的陳述。" },
+            
+            // PAPER 6 RULES ONLY
+            { paper: "Paper 6", en: "License Type 9 enables registered corporate professionals to manage asset portfolios safely.", zh: "第9類受規管活動容許已註冊的公司專業人員安全地管理資產組合。" },
+            { paper: "Paper 6", en: "Standard collective investment scheme applications target an operational approval window of 4 weeks.", zh: "標準集體投資計劃申請的目標運作審批時間為4個星期。" },
+            { paper: "Paper 6", en: "Non-standard fund applications usually experience longer customized risk assessment windows.", zh: "非標準基金申請通常需要較長的客製化風險評估時間。" },
+            { paper: "Paper 6", en: "The Product Key Facts Statement must accurately highlight core cross-border financial investment risks.", zh: "產品資料概要必須準確地突出核心跨境財務投資風險。" },
+            { paper: "Paper 6", en: "Fund management companies must perform comprehensive portfolio stress testing at regular intervals.", zh: "基金管理公司必須定期對投資組合進行全面的壓力測試。" }
         ];
 
+        let currentMode = "Paper 1"; // Default view mode targeting requested Paper 1 first
         let generatedQuestions = [];
         let timeLeft = 30 * 60;
+        let timerInterval;
 
-        // On-the-fly Question Generator Matrix Engine
-        function buildRandomExam() {
+        function runTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    gradeExam();
+                } else {
+                    timeLeft--;
+                    let mins = Math.floor(timeLeft / 60);
+                    let secs = timeLeft % 60;
+                    document.getElementById('timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        function switchMode(target) {
+            currentMode = target;
+            
+            // Handle visual Tab highlighting toggles
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(target === "Paper 1") document.getElementById('tab-p1').classList.add('active');
+            if(target === "Paper 6") document.getElementById('tab-p6').classList.add('active');
+            if(target === "Combined") document.getElementById('tab-both').classList.add('active');
+
+            regenerateCurrentTab();
+        }
+
+        function regenerateCurrentTab() {
+            timeLeft = 30 * 60; // Reset countdown parameters cleanly
+            document.getElementById('quiz-form').style.display = 'block';
+            document.getElementById('submit-exam-btn').style.display = 'inline-block';
+            document.getElementById('results-screen').style.display = 'none';
+            
+            buildTargetedExam();
+            runTimer();
+        }
+
+        function buildTargetedExam() {
             generatedQuestions = [];
             
-            // Loop to produce 15 unique custom variation structures
-            for (let i = 1; i <= 15; i++) {
+            // Filter underlying matrix arrays based on active selected tab filter
+            let filteredRules = rulesPool;
+            if (currentMode !== "Combined") {
+                filteredRules = rulesPool.filter(r => r.paper === currentMode);
+            }
+
+            // Generate exactly 10 high-quality target questions for crisp chunked revision sessions
+            for (let i = 1; i <= 10; i++) {
                 const isRoman = Math.random() > 0.5;
-                const activePaper = Math.random() > 0.5 ? "Paper 1" : "Paper 6";
+                const assignedPaper = currentMode === "Combined" ? (Math.random() > 0.5 ? "Paper 1" : "Paper 6") : currentMode;
                 
+                // Fallback safe mechanism if rule filter returns slim results during dynamic switching
+                const activeSelectionList = rulesPool.filter(r => r.paper === assignedPaper);
+                const targetRule = activeSelectionList[Math.floor(Math.random() * activeSelectionList.length)];
+
                 if (!isRoman) {
-                    // Generate a standard single-choice question structure
                     const sub = subjects[Math.floor(Math.random() * subjects.length)];
-                    const targetRule = rulesPool[Math.floor(Math.random() * rulesPool.length)];
-                    
                     generatedQuestions.push({
                         id: i,
-                        paper: activePaper,
+                        paper: assignedPaper,
                         type: "standard",
-                        q_en: `Under the established guidelines enforced by the ${sub.en}, which statement represents a core regulatory compliance duty regarding operations?`,
-                        q_zh: `在${sub.zh}執行的一般指引下，下列哪項陳述代表了關於業務營運的核心合規職責？`,
+                        q_en: `With reference to standard regulatory criteria applicable under ${assignedPaper} frameworks, which selection represents a true ongoing operational requirement?`,
+                        q_zh: `參考適用於 ${assignedPaper} 架構的標準監管準則，下列哪項選擇代表了真實的持續業務營運要求？`,
                         options: [
                             { key: "A", en: targetRule.en, zh: targetRule.zh },
-                            { key: "B", en: "Filing general administrative amendments only once every decade.", zh: "每十年僅申報一次一般性行政修訂。" },
-                            { key: "C", en: "Disregarding internal audit updates unless explicitly requested by third parties.", zh: "除非第三方明確要求，否則忽略內部審計更新。" },
-                            { key: "D", en: "Mixing corporate liquidity reserves into personal partner bank accounts.", zh: "將公司流動性儲備與合夥人個人銀行帳戶混合。" }
+                            { key: "B", en: "Delaying structural audit declarations indefinitely unless fined.", zh: "無限期延遲結構性審計申報，除非受到罰款。" },
+                            { key: "C", en: "Publishing completely unverified investment return promises directly to retail markets.", zh: "直接向零售市場發布完全未經核實的投資回報承諾。" },
+                            { key: "D", en: "Destroying historical transaction ledger entries instantly within 24 hours.", zh: "在24小時內立即銷毀歷史交易分類帳分錄。" }
                         ],
                         correct: "A",
-                        explain: `Option A is correct because it maps straight to valid compliance values: "${targetRule.en}"`
+                        explain: `Option A accurately states an immutable requirement: "${targetRule.en}"`
                     });
                 } else {
-                    // Generate a complex Roman Numeral pattern question structure
-                    // Mix 2 correct answers with 2 obviously wrong statements
-                    const correct1 = rulesPool[Math.floor(Math.random() * 4)];
-                    const correct2 = rulesPool[4 + Math.floor(Math.random() * 4)];
+                    const ruleA = activeSelectionList[Math.floor(Math.random() * activeSelectionList.length)];
+                    const ruleB = activeSelectionList[(Math.floor(Math.random() * activeSelectionList.length) + 1) % activeSelectionList.length];
                     
                     generatedQuestions.push({
                         id: i,
-                        paper: activePaper,
+                        paper: assignedPaper,
                         type: "roman",
-                        q_en: "Which of the following operational statements are CORRECT regarding the regulatory responsibilities of registered entities?",
-                        q_zh: "下列哪些關於註冊實體監管責任的業務陳述是正確的？",
+                        q_en: `Identify the CORRECT statements surrounding professional standard liabilities linked directly to ${assignedPaper}:`,
+                        q_zh: `識別圍繞與 ${assignedPaper} 直接相關的專業標準責任之「正確」陳述：`,
                         items_en: [
-                            correct1.en,
-                            "Intermediaries may completely ignore asset segregation rules if volume is small.",
-                            correct2.en,
-                            "Marketing materials can be released to the general public without any verification."
+                            ruleA.en,
+                            "Intermediaries are allowed to skip standard customer identity due diligence rules to save time.",
+                            ruleB.en,
+                            "Registered entities can hold client funds inside personal employee credit card accounts."
                         ],
                         items_zh: [
-                            correct1.zh,
-                            "如果業務量小，中介人可以完全忽略資產隔離規則。",
-                            correct2.zh,
-                            "市場推廣材料毋須經任何核實即可向公眾發布。"
+                            ruleA.zh,
+                            "為節省時間，中介人可以跳過標準的客戶身分盡職調查規則。",
+                            ruleB.zh,
+                            "註冊實體可以將客戶資金存放在員工個人信用卡帳戶中。"
                         ],
                         options: [
                             { key: "A", en: "I and II only", zh: "只有I 及II" },
                             { key: "B", en: "I and III only", zh: "只有I 及III" },
                             { key: "C", en: "II and IV only", zh: "只有II 及IV" },
-                            { key: "D", en: "III and IV only", zh: "只有III 及IV" }
+                            { key: "D", en: "I, III and IV only", zh: "只有I、III 及IV" }
                         ],
-                        correct: "B", // I and III are mapped to our valid choices
-                        explain: "Statements I and III represent true legal tenets. Statements II and IV are gross regulatory compliance violations."
+                        correct: "B",
+                        explain: "Items I and III reflect standard structural compliance protocols. Items II and IV constitute illegal operational actions."
                     });
                 }
             }
@@ -340,7 +399,7 @@
             generatedQuestions.forEach((q, idx) => {
                 let html = `
                     <div class="quiz-card" id="card-${q.id}">
-                        <div class="q-meta">${q.paper} • Question ${idx + 1} of 15</div>
+                        <div class="q-meta">${q.paper} • Question ${idx + 1} of 10</div>
                         <div class="q-text">
                             <div class="lang-en">${q.q_en}</div>
                             <div class="lang-zh">${q.q_zh}</div>
@@ -385,20 +444,8 @@
             if (mode === 'zh') document.body.classList.add('hide-en');
         }
 
-        const countdown = setInterval(() => {
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                gradeExam();
-            } else {
-                timeLeft--;
-                let mins = Math.floor(timeLeft / 60);
-                let secs = timeLeft % 60;
-                document.getElementById('timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-        }, 1000);
-
         function gradeExam() {
-            clearInterval(countdown);
+            clearInterval(timerInterval);
             let score = 0;
             const total = generatedQuestions.length;
 
@@ -422,12 +469,16 @@
             
             document.getElementById('results-screen').style.display = 'block';
             document.getElementById('score-display').innerText = `${finalPct}%`;
-            document.getElementById('score-meta').innerText = `Scored ${score} / ${total}. Passing score is 70%.`;
+            document.getElementById('score-meta').innerText = `Scored ${score} / ${total} on ${currentMode}. Passing benchmark is 70%.`;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        window.onload = buildRandomExam;
+        // Run instantiation on initial browser load
+        window.onload = () => {
+            buildTargetedExam();
+            runTimer();
+        };
     </script>
 </body>
 </html>
