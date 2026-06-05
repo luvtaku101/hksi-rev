@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKSI Paper 1 & 6 Tabbed Revision Engine</title>
+    <title>HKSI Paper 1 Authentic Revision Engine</title>
     <style>
         :root {
             --primary: #0f4c81;
@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: #f7fafc;
@@ -38,18 +38,16 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        /* Tabs Interface Layout */
         .tabs-container {
             display: flex;
             gap: 0.5rem;
             margin-bottom: 1rem;
             border-bottom: 2px solid var(--border);
-            padding-bottom: 1px;
         }
 
         .tab-btn {
@@ -62,12 +60,7 @@
             font-weight: bold;
             border-radius: 6px 6px 0 0;
             cursor: pointer;
-            transition: all 0.2s;
             margin-bottom: -2px;
-        }
-
-        .tab-btn:hover {
-            background: #cbd5e0;
         }
 
         .tab-btn.active {
@@ -86,26 +79,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
         }
 
         .btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             font-size: 0.95rem;
             border-radius: 4px;
             cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
+            font-weight: 600;
         }
 
         .btn-secondary {
             background-color: #718096;
+            margin-right: 0.5rem;
         }
 
         .quiz-card {
@@ -121,9 +110,8 @@
             font-size: 0.85rem;
             color: var(--accent);
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
         .q-text {
@@ -146,10 +134,6 @@
             list-style-type: upper-roman;
         }
 
-        .roman-list li {
-            margin-bottom: 0.5rem;
-        }
-
         .options-container {
             display: flex;
             flex-direction: column;
@@ -164,6 +148,7 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             cursor: pointer;
+            transition: background 0.1s;
         }
 
         .option-label input {
@@ -174,6 +159,7 @@
         .correct-answer {
             background-color: #c6f6d5 !important;
             border-color: var(--success) !important;
+            font-weight: bold;
         }
 
         .wrong-answer {
@@ -183,15 +169,16 @@
 
         .explanation {
             margin-top: 1.5rem;
-            padding: 1rem;
+            padding: 1.2rem;
             background-color: #ebf8ff;
             border-left: 4px solid #3182ce;
             display: none;
+            border-radius: 0 6px 6px 0;
         }
 
         #timer {
             font-family: monospace;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
         }
 
@@ -202,6 +189,7 @@
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
         .score-big {
@@ -219,27 +207,25 @@
 
     <header>
         <div>
-            <h2 style="margin:0; font-size:1.3rem;">HKSI Modular Training Engine</h2>
+            <h2 style="margin:0; font-size:1.3rem;">HKSI Paper 1 Official Revision Dashboard</h2>
         </div>
-        <div id="timer">30:00</div>
+        <div id="timer">45:00</div>
     </header>
 
     <div class="container">
-        <!-- Tab Switches -->
         <div class="tabs-container">
-            <button class="tab-btn active" id="tab-p1" onclick="switchMode('Paper 1')">HKSI Paper 1</button>
-            <button class="tab-btn" id="tab-p6" onclick="switchMode('Paper 6')">HKSI Paper 6</button>
-            <button class="tab-btn" id="tab-both" onclick="switchMode('Combined')">Combined Exam</button>
+            <button class="tab-btn active" id="tab-p1" onclick="switchMode('Paper 1')">HKSI Paper 1 Core Focus</button>
+            <button class="tab-btn" id="tab-disabled" style="opacity:0.5; cursor:not-allowed;" disabled>HKSI Paper 6 (Locked)</button>
         </div>
 
         <div class="controls-panel">
             <div>
                 <button class="btn btn-secondary" onclick="toggleLanguage('all')">Bilingual</button>
                 <button class="btn btn-secondary" onclick="toggleLanguage('en')">English Only</button>
-                <button class="btn btn-secondary" onclick="toggleLanguage('zh')">中文</button>
+                <button class="btn btn-secondary" onclick="toggleLanguage('zh')">中文對照</button>
             </div>
             <div>
-                <button id="submit-exam-btn" class="btn" onclick="gradeExam()">Grade My Test</button>
+                <button id="submit-exam-btn" class="btn" onclick="gradeExam()">Grade My Exam & Show Correct Answers</button>
             </div>
         </div>
 
@@ -248,147 +234,159 @@
         </form>
 
         <div id="results-screen">
-            <h2>Test Completed / 測試完畢</h2>
+            <h2>Test Evaluation / 評估結果</h2>
             <div class="score-big" id="score-display">0%</div>
-            <p id="score-meta"></p>
-            <button class="btn" onclick="regenerateCurrentTab()">Generate New Tab Test / 重新生成本帖題目</button>
+            <p id="score-meta" style="font-size:1.1rem; color:#4a5568;"></p>
+            <p style="color:var(--accent); font-weight:bold;">Scroll down below to inspect correct answers and text explanations highlighted in green!</p>
+            <button class="btn" onclick="regenerateTest()">Generate New Verified Paper 1 Questions</button>
         </div>
     </div>
 
     <script>
-        // Deeply tagged rule database separation layers
-        const subjects = [
-            { en: "Securities and Futures Commission (SFC)", zh: "證券及期貨事務監察委員會（證監會）" },
-            { en: "Mandatory Provident Fund Schemes Authority (MPFA)", zh: "強制性公積金計劃管理局（積金局）" },
-            { en: "Hong Kong Monetary Authority (HKMA)", zh: "香港金融管理局（金管局）" }
+        // Authentic dataset strictly mapped directly to SFO & Version 3.4.2 Curriculum
+        const staticQuestions = [
+            {
+                id: 1,
+                type: "standard",
+                q_en: "According to Part V of the Securities and Futures Ordinance (SFO), what type of framework does the Securities and Futures Commission (SFC) operate under regarding granting approvals?",
+                q_zh: "根據《證券及期貨條例》第V部，證券及期貨事務監察委員會（證監會）在授予批准方面運行哪種類型的架構？",
+                options: [
+                    { key: "A", en: "A multi-licence framework where independent corporate applications must be submitted for each individual operational branch.", zh: "多重牌照架構，必須為每個獨立的業務部門提交單獨的公司申請。" },
+                    { key: "B", en: "The 'single licence regime', meaning the SFC will grant only one licence or registration enabling the holder to undertake one or more regulated activities.", zh: "「單一牌照制度」，意指證監會將僅授予一項牌照或註冊，使持有人能夠從事一項或多項受規管活動。" },
+                    { key: "C", en: "A discretionary jurisdiction system completely administered by the Hong Kong Exchanges and Clearing Limited (HKEX).", zh: "完全由香港交易及結算所有限公司（港交所）管理的自由裁量管轄系統。" },
+                    { key: "D", en: "A merit-exclusive registration loop completely exempting Authorized Financial Institutions (AFIs).", zh: "完全豁免認可財務機構（AFI）的純功績基礎註冊機制。" }
+                ],
+                correct: "B",
+                explain: "Under SFO Part V section 7.3, although there are up to 13 distinct types of regulated activity, the SFC will grant to a person only one licence or registration. This is referred to as the 'single licence regime'."
+            },
+            {
+                id: 2,
+                type: "roman",
+                q_en: "Under Schedule 1 of the SFO, which of the following instruments are explicitly defined as 'securities'?",
+                q_zh: "根據《證券及期貨條例》附表1，下列哪些工具被明確定義為「證券」？",
+                items_en: [
+                    "Shares or stocks of a corporation.",
+                    "Bonds, debentures, or loan stocks.",
+                    "Interests in authorized Collective Investment Schemes (CISs).",
+                    "Interests, rights or property prescribed by the Financial Secretary under section 392 of the SFO."
+                ],
+                items_zh: [
+                    "法團的股份或股票。",
+                    "債券、債權證或股權股額。",
+                    "獲認可集體投資計劃（CIS）的權益。",
+                    "由財政司司長根據《證券及期貨條例》第392條指定為證券的權益、權利或財產。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有I 及II" },
+                    { key: "B", en: "I, II and III only", zh: "只有I、II 及III" },
+                    { key: "C", en: "III and IV only", zh: "只有III 及IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
+                ],
+                correct: "D",
+                explain: "SFO Schedule 1 and Topic 4 section 8.2 explicitly define all four options—including shares, bonds, CIS interests, and products designated by the Financial Secretary—as forming the definition of 'securities'."
+            },
+            {
+                id: 3,
+                type: "standard",
+                q_en: "If a licensed corporation fails to maintain or meet its liquid capital requirements under the Securities and Futures (Financial Resources) Rules (FRR), what immediate operational step is required by law?",
+                q_zh: "如果持牌法團未能維持或符合《證券及期貨（財政資源）規則》（FRR）規定的速動資金要求，法律要求採取什麼立即的業務步驟？",
+                options: [
+                    { key: "A", en: "It can apply for an automatic 60-day retroactive extension from the Financial Secretary.", zh: "它可以向財政司司長申請自動溯及既往的60天延期。" },
+                    { key: "B", en: "It must notify the SFC in writing as soon as reasonably practicable and immediately cease carrying out any regulated activity unless permitted otherwise.", zh: "它必須在合理切實可行範圍內儘快以書面形式通知證監會，並立即停止進行任何受規管活動，除非獲得另行允許。" },
+                    { key: "C", en: "It must submit a standard corporate summary sheet within the next quarterly financial report.", zh: "它必須在下一次季度財務報告中提交一份標準的公司摘要表。" },
+                    { key: "D", en: "It may temporarily merge its operating capital pool with an associated entity without reporting.", zh: "它可以臨時將其營運資金池與關聯實體合併而無需申報。" }
+                ],
+                correct: "B",
+                explain: "According to the official Knowledge Check Answers for SFO Part VI, an intermediary failing to meet capital requirements must notify the SFC in writing as soon as reasonably practicable and immediately cease carrying out regulated activities unless explicitly permitted."
+            },
+            {
+                id: 4,
+                type: "standard",
+                q_en: "Under SFO Part V, which professionals are granted specific statutory exclusions from the requirement to hold an SFC licence for conducting Type 4 (advising on securities) and Type 9 (asset management) activities?",
+                q_zh: "根據《證券及期貨條例》第V部，哪些專業人士在進行第4類（就證券提供意見）和第9類（資產管理）活動時，獲授予特定法定豁免而無需持有證監會牌照？",
+                options: [
+                    { key: "A", en: "Certified public accountants, solicitors, and counsel whose performance of these activities is wholly incidental to their professions.", zh: "其進行該等活動完全屬於其專業附帶業務的執業會計師、律師和大律師。" },
+                    { key: "B", en: "All financial journalists and internet market commentators publishing general public advice.", zh: "所有發布大眾傳播建議的財經記者和網絡市場評論員。" },
+                    { key: "C", en: "Any executive director of a foreign listed conglomerate.", zh: "外國上市企業集團的任何執行董事。" },
+                    { key: "D", en: "Independent money brokers who do not hold physical retail client cash assets.", zh: "不持有實體零售客戶現金資產的獨立資金經紀人。" }
+                ],
+                correct: "A",
+                explain: "Topic 4 Section 1.12 explicitly states that certified public accountants, solicitors, and counsel conducting Type 4, 5, 6, and 9 regulated activities wholly incidental to their professions are excluded from licensing requirements."
+            },
+            {
+                id: 5,
+                type: "roman",
+                q_en: "Which of the following legal attributes accurately state the status and impact of the Codes of Conduct issued by the SFC under section 169 of the SFO?",
+                q_zh: "下列哪些法律屬性準確地陳述了證監會根據《證券及期貨條例》第169條發布的《操守準則》的地位和影響？",
+                items_en: [
+                    "A failure to comply with a code of conduct is not an automatic breach of law and does not by itself constitute an offence.",
+                    "Breaches of codes of conduct may be taken into account by the SFC to determine if an individual remains 'fit and proper'.",
+                    "Courts hearing legal proceedings under the SFO shall consider code provisions if deemed relevant to the determination.",
+                    "The codes possess complete criminal statutory powers and override the primary text of the SFO."
+                ],
+                items_zh: [
+                    "不遵守操守準則並不自動構成違反法律，其本身並不構成犯罪。",
+                    "違反操守準則可能會被證監會考慮，以判定某人是否仍然屬於「適當人選」。",
+                    "法院在審理《證券及期貨條例》下的法律訴訟時，如果認為相關，應考慮準則的條文。",
+                    "該等準則具有完整的刑事法定權力，並可凌駕於《證券及期貨條例》的主文之上。"
+                ],
+                options: [
+                    { key: "A", en: "I, II and III only", zh: "只有I、II 及III" },
+                    { key: "B", en: "I and IV only", zh: "只有I 及IV" },
+                    { key: "C", en: "II and IV only", zh: "只有II 及IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
+                ],
+                correct: "A",
+                explain: "SFO Part VII section 9.2 states that while a breach of the codes is not an automatic legal offence, it directly affects 'fit and proper' status and holds legal recognition because courts are mandated to consider relevant code provisions. Item IV is false."
+            },
+            {
+                id: 6,
+                type: "standard",
+                q_en: "Under the joint regulation framework for Registered Institutions (AFIs conducting regulated activities), which regulatory body acts as the frontline supervising entity?",
+                q_zh: "在對註冊機構（從事受規管活動的AFI）的聯合監管架構下，哪一個監管機構擔任一線監督實體？",
+                options: [
+                    { key: "A", en: "The Securities and Futures Commission (SFC) exclusively.", zh: "完全由證券及期貨事務監察委員會（證監會）負責。" },
+                    { key: "B", en: "The Hong Kong Monetary Authority (HKMA).", zh: "香港金融管理局（金管局）。" },
+                    { key: "C", en: "The Financial Services and the Treasury Bureau (FSTB).", zh: "財經事務及庫務局（財庫局）。" },
+                    { key: "D", en: "The Stock Exchange of Hong Kong Limited (SEHK).", zh: "香港聯合交易所有限公司（聯交所）。" }
+                ],
+                correct: "B",
+                explain: "Topic 4 Section 1.11 establishes that Authorized Financial Institutions (AFIs) are jointly regulated, with the HKMA being the front-line regulator applying SFC criteria (including fitness and properness and business conduct)."
+            },
+            {
+                id: 7,
+                type: "standard",
+                q_en: "What power does the SFO explicitly grant the SFC under Part XVI regarding ongoing civil court proceedings between third parties?",
+                q_zh: "根據《證券及期貨條例》第XVI部，條例明確授予證監會關於第三方之間正在進行的民事法院訴訟的什麼權力？",
+                options: [
+                    { key: "A", en: "The SFC can instantly dismiss any private civil lawsuit without the court's permission.", zh: "證監會可以無需法院批准，立即駁回任何私人民事訴訟。" },
+                    { key: "B", en: "The SFC has the power to intervene in civil proceedings between third parties in cases concerning matters under the SFO or certain parts of the Companies Ordinance (CO), subject to court approval.", zh: "證監會有權在涉及《證券及期貨條例》事項或《公司條例》（CO）某些部分的案件中，介入第三方之間的民事訴訟，但須獲得法院批准。" },
+                    { key: "C", en: "The SFC is structurally banned from participating in or tracking civil common law cases.", zh: "證監會在結構上被禁止參與或追踪民事普通法案件。" },
+                    { key: "D", en: "The SFC can alter civil damage amounts awarded by judges at its discretion.", zh: "證監會可以自行裁量修改法官判給的民事損害賠償金額。" }
+                ],
+                correct: "B",
+                explain: "SFO Part XVI Section 17.3 explicitly notes that the SFC has the power to intervene in civil proceedings between third parties in cases concerning SFO matters or certain parts of the CO, subject to court approval."
+            }
         ];
 
-        const rulesPool = [
-            // PAPER 1 RULES ONLY
-            { paper: "Paper 1", en: "License Type 1 relates specifically to dealing in securities transactions legally.", zh: "第1類受規管活動專指合法地進行證券交易業務。" },
-            { paper: "Paper 1", en: "License Type 4 governs advising on securities within established Hong Kong frameworks.", zh: "第4類受規管活動監管於香港既定架構內就證券提供意見。" },
-            { paper: "Paper 1", en: "All client assets must be kept strictly segregated from the intermediary's own house operating accounts.", zh: "所有客戶資產必須與中介公司的自營營運帳戶嚴格分開管理。" },
-            { paper: "Paper 1", en: "An executive officer of a registered institution requires prior approval from the HKMA.", zh: "註冊機構的主管人員必須預先獲得香港金融管理局的批准。" },
-            { paper: "Paper 1", en: "Intermediaries must guarantee that any marketing advertisements are not false, biased or misleading.", zh: "中介人必須確保任何市場推廣廣告均不含虛假、偏頗或誤導性的陳述。" },
-            
-            // PAPER 6 RULES ONLY
-            { paper: "Paper 6", en: "License Type 9 enables registered corporate professionals to manage asset portfolios safely.", zh: "第9類受規管活動容許已註冊的公司專業人員安全地管理資產組合。" },
-            { paper: "Paper 6", en: "Standard collective investment scheme applications target an operational approval window of 4 weeks.", zh: "標準集體投資計劃申請的目標運作審批時間為4個星期。" },
-            { paper: "Paper 6", en: "Non-standard fund applications usually experience longer customized risk assessment windows.", zh: "非標準基金申請通常需要較長的客製化風險評估時間。" },
-            { paper: "Paper 6", en: "The Product Key Facts Statement must accurately highlight core cross-border financial investment risks.", zh: "產品資料概要必須準確地突出核心跨境財務投資風險。" },
-            { paper: "Paper 6", en: "Fund management companies must perform comprehensive portfolio stress testing at regular intervals.", zh: "基金管理公司必須定期對投資組合進行全面的壓力測試。" }
-        ];
+        let generatedQuestions = [...staticQuestions];
 
-        let currentMode = "Paper 1"; // Default view mode targeting requested Paper 1 first
-        let generatedQuestions = [];
-        let timeLeft = 30 * 60;
-        let timerInterval;
-
-        function runTimer() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    gradeExam();
-                } else {
-                    timeLeft--;
-                    let mins = Math.floor(timeLeft / 60);
-                    let secs = timeLeft % 60;
-                    document.getElementById('timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                }
-            }, 1000);
+        function switchMode(mode) {
+            // Paper 1 core locked state notification loop
+            if(mode !== 'Paper 1') return;
+            regenerateTest();
         }
 
-        function switchMode(target) {
-            currentMode = target;
-            
-            // Handle visual Tab highlighting toggles
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if(target === "Paper 1") document.getElementById('tab-p1').classList.add('active');
-            if(target === "Paper 6") document.getElementById('tab-p6').classList.add('active');
-            if(target === "Combined") document.getElementById('tab-both').classList.add('active');
-
-            regenerateCurrentTab();
+        function toggleLanguage(mode) {
+            document.body.classList.remove('hide-zh', 'hide-en');
+            if (mode === 'en') document.body.classList.add('hide-zh');
+            if (mode === 'zh') document.body.classList.add('hide-en');
         }
 
-        function regenerateCurrentTab() {
-            timeLeft = 30 * 60; // Reset countdown parameters cleanly
+        function regenerateTest() {
             document.getElementById('quiz-form').style.display = 'block';
             document.getElementById('submit-exam-btn').style.display = 'inline-block';
             document.getElementById('results-screen').style.display = 'none';
-            
-            buildTargetedExam();
-            runTimer();
-        }
-
-        function buildTargetedExam() {
-            generatedQuestions = [];
-            
-            // Filter underlying matrix arrays based on active selected tab filter
-            let filteredRules = rulesPool;
-            if (currentMode !== "Combined") {
-                filteredRules = rulesPool.filter(r => r.paper === currentMode);
-            }
-
-            // Generate exactly 10 high-quality target questions for crisp chunked revision sessions
-            for (let i = 1; i <= 10; i++) {
-                const isRoman = Math.random() > 0.5;
-                const assignedPaper = currentMode === "Combined" ? (Math.random() > 0.5 ? "Paper 1" : "Paper 6") : currentMode;
-                
-                // Fallback safe mechanism if rule filter returns slim results during dynamic switching
-                const activeSelectionList = rulesPool.filter(r => r.paper === assignedPaper);
-                const targetRule = activeSelectionList[Math.floor(Math.random() * activeSelectionList.length)];
-
-                if (!isRoman) {
-                    const sub = subjects[Math.floor(Math.random() * subjects.length)];
-                    generatedQuestions.push({
-                        id: i,
-                        paper: assignedPaper,
-                        type: "standard",
-                        q_en: `With reference to standard regulatory criteria applicable under ${assignedPaper} frameworks, which selection represents a true ongoing operational requirement?`,
-                        q_zh: `參考適用於 ${assignedPaper} 架構的標準監管準則，下列哪項選擇代表了真實的持續業務營運要求？`,
-                        options: [
-                            { key: "A", en: targetRule.en, zh: targetRule.zh },
-                            { key: "B", en: "Delaying structural audit declarations indefinitely unless fined.", zh: "無限期延遲結構性審計申報，除非受到罰款。" },
-                            { key: "C", en: "Publishing completely unverified investment return promises directly to retail markets.", zh: "直接向零售市場發布完全未經核實的投資回報承諾。" },
-                            { key: "D", en: "Destroying historical transaction ledger entries instantly within 24 hours.", zh: "在24小時內立即銷毀歷史交易分類帳分錄。" }
-                        ],
-                        correct: "A",
-                        explain: `Option A accurately states an immutable requirement: "${targetRule.en}"`
-                    });
-                } else {
-                    const ruleA = activeSelectionList[Math.floor(Math.random() * activeSelectionList.length)];
-                    const ruleB = activeSelectionList[(Math.floor(Math.random() * activeSelectionList.length) + 1) % activeSelectionList.length];
-                    
-                    generatedQuestions.push({
-                        id: i,
-                        paper: assignedPaper,
-                        type: "roman",
-                        q_en: `Identify the CORRECT statements surrounding professional standard liabilities linked directly to ${assignedPaper}:`,
-                        q_zh: `識別圍繞與 ${assignedPaper} 直接相關的專業標準責任之「正確」陳述：`,
-                        items_en: [
-                            ruleA.en,
-                            "Intermediaries are allowed to skip standard customer identity due diligence rules to save time.",
-                            ruleB.en,
-                            "Registered entities can hold client funds inside personal employee credit card accounts."
-                        ],
-                        items_zh: [
-                            ruleA.zh,
-                            "為節省時間，中介人可以跳過標準的客戶身分盡職調查規則。",
-                            ruleB.zh,
-                            "註冊實體可以將客戶資金存放在員工個人信用卡帳戶中。"
-                        ],
-                        options: [
-                            { key: "A", en: "I and II only", zh: "只有I 及II" },
-                            { key: "B", en: "I and III only", zh: "只有I 及III" },
-                            { key: "C", en: "II and IV only", zh: "只有II 及IV" },
-                            { key: "D", en: "I, III and IV only", zh: "只有I、III 及IV" }
-                        ],
-                        correct: "B",
-                        explain: "Items I and III reflect standard structural compliance protocols. Items II and IV constitute illegal operational actions."
-                    });
-                }
-            }
             renderQuiz();
         }
 
@@ -399,7 +397,7 @@
             generatedQuestions.forEach((q, idx) => {
                 let html = `
                     <div class="quiz-card" id="card-${q.id}">
-                        <div class="q-meta">${q.paper} • Question ${idx + 1} of 10</div>
+                        <div class="q-meta">Official Syllabus Core • Question ${idx + 1} of ${generatedQuestions.length}</div>
                         <div class="q-text">
                             <div class="lang-en">${q.q_en}</div>
                             <div class="lang-zh">${q.q_zh}</div>
@@ -430,7 +428,7 @@
 
                 html += `</div>
                         <div class="explanation" id="explain-${q.id}">
-                            <strong>Explanation / 答案解析:</strong><br>${q.explain}
+                            <strong>Official Regulatory Log / 考題解析:</strong><br>${q.explain}
                         </div>
                     </div>`;
                 
@@ -438,14 +436,7 @@
             });
         }
 
-        function toggleLanguage(mode) {
-            document.body.classList.remove('hide-zh', 'hide-en');
-            if (mode === 'en') document.body.classList.add('hide-zh');
-            if (mode === 'zh') document.body.classList.add('hide-en');
-        }
-
         function gradeExam() {
-            clearInterval(timerInterval);
             let score = 0;
             const total = generatedQuestions.length;
 
@@ -453,6 +444,7 @@
                 const selected = document.querySelector(`input[name="question-${q.id}"]:checked`);
                 const userAns = selected ? selected.value : null;
                 
+                // Expose every explanation block instantly inside the active document layout
                 document.getElementById(`explain-${q.id}`).style.display = 'block';
                 document.getElementById(`label-${q.id}-${q.correct}`).classList.add('correct-answer');
 
@@ -464,20 +456,17 @@
             });
 
             const finalPct = Math.round((score / total) * 100);
-            document.getElementById('quiz-form').style.display = 'none';
-            document.getElementById('submit-exam-btn').style.display = 'none';
             
+            // Show review panel safely
             document.getElementById('results-screen').style.display = 'block';
             document.getElementById('score-display').innerText = `${finalPct}%`;
-            document.getElementById('score-meta').innerText = `Scored ${score} / ${total} on ${currentMode}. Passing benchmark is 70%.`;
+            document.getElementById('score-meta').innerText = `You scored ${score} out of ${total} questions correctly. Passing threshold is 70%.`;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Run instantiation on initial browser load
         window.onload = () => {
-            buildTargetedExam();
-            runTimer();
+            renderQuiz();
         };
     </script>
 </body>
