@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKSI Paper 1 Authentic Revision Engine</title>
+    <title>HKSI Paper 1 Comprehensive 20-Q Revision Engine</title>
     <style>
         :root {
             --primary: #0f4c81;
@@ -207,14 +207,14 @@
 
     <header>
         <div>
-            <h2 style="margin:0; font-size:1.3rem;">HKSI Paper 1 Official Revision Dashboard</h2>
+            <h2 style="margin:0; font-size:1.3rem;">HKSI Paper 1 Comprehensive Revision Engine</h2>
         </div>
         <div id="timer">45:00</div>
     </header>
 
     <div class="container">
         <div class="tabs-container">
-            <button class="tab-btn active" id="tab-p1" onclick="switchMode('Paper 1')">HKSI Paper 1 Core Focus</button>
+            <button class="tab-btn active" id="tab-p1" onclick="switchMode('Paper 1')">HKSI Paper 1 (20 Qs Mode)</button>
             <button class="tab-btn" id="tab-disabled" style="opacity:0.5; cursor:not-allowed;" disabled>HKSI Paper 6 (Locked)</button>
         </div>
 
@@ -225,7 +225,7 @@
                 <button class="btn btn-secondary" onclick="toggleLanguage('zh')">中文對照</button>
             </div>
             <div>
-                <button id="submit-exam-btn" class="btn" onclick="gradeExam()">Grade My Exam & Show Correct Answers</button>
+                <button id="submit-exam-btn" class="btn" onclick="gradeExam()">Grade My 20 Questions</button>
             </div>
         </div>
 
@@ -237,31 +237,28 @@
             <h2>Test Evaluation / 評估結果</h2>
             <div class="score-big" id="score-display">0%</div>
             <p id="score-meta" style="font-size:1.1rem; color:#4a5568;"></p>
-            <p style="color:var(--accent); font-weight:bold;">Scroll down below to inspect correct answers and text explanations highlighted in green!</p>
-            <button class="btn" onclick="regenerateTest()">Generate New Verified Paper 1 Questions</button>
+            <p style="color:var(--accent); font-weight:bold;">Scroll down to review correct answers and official explanations!</p>
+            <button class="btn" onclick="regenerateTest()">Generate 20 New Randomized Questions</button>
         </div>
     </div>
 
     <script>
-        // Authentic dataset strictly mapped directly to SFO & Version 3.4.2 Curriculum
-        const staticQuestions = [
+        // MASSIVE LIVE QUESTION BANK STITCHED ACCORDING TO VERSION 3.4.2 CURRICULUM
+        const questionBank = [
             {
-                id: 1,
-                type: "standard",
+                id: 1, type: "standard",
                 q_en: "According to Part V of the Securities and Futures Ordinance (SFO), what type of framework does the Securities and Futures Commission (SFC) operate under regarding granting approvals?",
-                q_zh: "根據《證券及期貨條例》第V部，證券及期貨事務監察委員會（證監會）在授予批准方面運行哪種類型的架構？",
+                q_zh: "根據《證券及期貨條例》第V部，證券及期貨事務監察委員會（證監會）在授予批准方面運行哪種類型之架構？",
                 options: [
-                    { key: "A", en: "A multi-licence framework where independent corporate applications must be submitted for each individual operational branch.", zh: "多重牌照架構，必須為每個獨立的業務部門提交單獨的公司申請。" },
+                    { key: "A", en: "A multi-licence framework where independent corporate applications must be submitted.", zh: "多重牌照架構，必須提交單獨的公司申請。" },
                     { key: "B", en: "The 'single licence regime', meaning the SFC will grant only one licence or registration enabling the holder to undertake one or more regulated activities.", zh: "「單一牌照制度」，意指證監會將僅授予一項牌照或註冊，使持有人能夠從事一項或多項受規管活動。" },
-                    { key: "C", en: "A discretionary jurisdiction system completely administered by the Hong Kong Exchanges and Clearing Limited (HKEX).", zh: "完全由香港交易及結算所有限公司（港交所）管理的自由裁量管轄系統。" },
-                    { key: "D", en: "A merit-exclusive registration loop completely exempting Authorized Financial Institutions (AFIs).", zh: "完全豁免認可財務機構（AFI）的純功績基礎註冊機制。" }
-                ],
-                correct: "B",
-                explain: "Under SFO Part V section 7.3, although there are up to 13 distinct types of regulated activity, the SFC will grant to a person only one licence or registration. This is referred to as the 'single licence regime'."
+                    { key: "C", en: "A discretionary jurisdiction system completely administered by the Hong Kong Exchanges and Clearing Limited.", zh: "完全由香港交易及結算所有限公司管理的自由裁量管轄系統。" },
+                    { key: "D", en: "A merit-exclusive registration loop completely exempting Authorized Financial Institutions.", zh: "完全豁免認可財務機構的純功績基礎註冊機制。" }
+                ], correct: "B",
+                explain: "Under SFO Part V section 7.3, although there are multiple types of regulated activity, the SFC grants only one licence or registration. This is referred to as the 'single licence regime'."
             },
             {
-                id: 2,
-                type: "roman",
+                id: 2, type: "roman",
                 q_en: "Under Schedule 1 of the SFO, which of the following instruments are explicitly defined as 'securities'?",
                 q_zh: "根據《證券及期貨條例》附表1，下列哪些工具被明確定義為「證券」？",
                 items_en: [
@@ -278,54 +275,48 @@
                 ],
                 options: [
                     { key: "A", en: "I and II only", zh: "只有I 及II" },
-                    { key: "B", en: "I, II and III only", zh: "只有I、II 及III" },
+                    { key: "B", en: "I, II and III only", zh: "核心只有I、II 及III" },
                     { key: "C", en: "III and IV only", zh: "只有III 及IV" },
                     { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
-                ],
-                correct: "D",
-                explain: "SFO Schedule 1 and Topic 4 section 8.2 explicitly define all four options—including shares, bonds, CIS interests, and products designated by the Financial Secretary—as forming the definition of 'securities'."
+                ], correct: "D",
+                explain: "SFO Schedule 1 explicitly includes all four elements within the definition of 'securities'."
             },
             {
-                id: 3,
-                type: "standard",
+                id: 3, type: "standard",
                 q_en: "If a licensed corporation fails to maintain or meet its liquid capital requirements under the Securities and Futures (Financial Resources) Rules (FRR), what immediate operational step is required by law?",
                 q_zh: "如果持牌法團未能維持或符合《證券及期貨（財政資源）規則》（FRR）規定的速動資金要求，法律要求採取什麼立即的業務步驟？",
                 options: [
-                    { key: "A", en: "It can apply for an automatic 60-day retroactive extension from the Financial Secretary.", zh: "它可以向財政司司長申請自動溯及既往的60天延期。" },
+                    { key: "A", en: "It can apply for an automatic 60-day retroactive extension.", zh: "它可以申請自動溯及既往的60天延期。" },
                     { key: "B", en: "It must notify the SFC in writing as soon as reasonably practicable and immediately cease carrying out any regulated activity unless permitted otherwise.", zh: "它必須在合理切實可行範圍內儘快以書面形式通知證監會，並立即停止進行任何受規管活動，除非獲得另行允許。" },
                     { key: "C", en: "It must submit a standard corporate summary sheet within the next quarterly financial report.", zh: "它必須在下一次季度財務報告中提交一份標準的公司摘要表。" },
-                    { key: "D", en: "It may temporarily merge its operating capital pool with an associated entity without reporting.", zh: "它可以臨時將其營運資金池與關聯實體合併而無需申報。" }
-                ],
-                correct: "B",
-                explain: "According to the official Knowledge Check Answers for SFO Part VI, an intermediary failing to meet capital requirements must notify the SFC in writing as soon as reasonably practicable and immediately cease carrying out regulated activities unless explicitly permitted."
+                    { key: "D", en: "It may temporarily merge its operating capital pool with an associated entity.", zh: "它可以臨時將其營運資金池與關聯實體合併。" }
+                ], correct: "B",
+                explain: "An intermediary failing to meet capital requirements must notify the SFC in writing as soon as reasonably practicable and immediately cease carrying out regulated activities."
             },
             {
-                id: 4,
-                type: "standard",
-                q_en: "Under SFO Part V, which professionals are granted specific statutory exclusions from the requirement to hold an SFC licence for conducting Type 4 (advising on securities) and Type 9 (asset management) activities?",
-                q_zh: "根據《證券及期貨條例》第V部，哪些專業人士在進行第4類（就證券提供意見）和第9類（資產管理）活動時，獲授予特定法定豁免而無需持有證監會牌照？",
+                id: 4, type: "standard",
+                q_en: "Under SFO Part V, which professionals are granted specific statutory exclusions from holding an SFC licence for conducting Type 4 and Type 9 activities?",
+                q_zh: "根據《證券及期貨條例》第V部，哪些專業人士在進行第4類和第9類活動時，獲授予特定法定豁免而無需持有證監會牌照？",
                 options: [
                     { key: "A", en: "Certified public accountants, solicitors, and counsel whose performance of these activities is wholly incidental to their professions.", zh: "其進行該等活動完全屬於其專業附帶業務的執業會計師、律師和大律師。" },
                     { key: "B", en: "All financial journalists and internet market commentators publishing general public advice.", zh: "所有發布大眾傳播建議的財經記者和網絡市場評論員。" },
                     { key: "C", en: "Any executive director of a foreign listed conglomerate.", zh: "外國上市企業集團的任何執行董事。" },
                     { key: "D", en: "Independent money brokers who do not hold physical retail client cash assets.", zh: "不持有實體零售客戶現金資產的獨立資金經紀人。" }
-                ],
-                correct: "A",
-                explain: "Topic 4 Section 1.12 explicitly states that certified public accountants, solicitors, and counsel conducting Type 4, 5, 6, and 9 regulated activities wholly incidental to their professions are excluded from licensing requirements."
+                ], correct: "A",
+                explain: "SFO Part V explicitly states that certified public accountants, solicitors, and counsel conducting activities wholly incidental to their professions are excluded from licensing requirements."
             },
             {
-                id: 5,
-                type: "roman",
+                id: 5, type: "roman",
                 q_en: "Which of the following legal attributes accurately state the status and impact of the Codes of Conduct issued by the SFC under section 169 of the SFO?",
                 q_zh: "下列哪些法律屬性準確地陳述了證監會根據《證券及期貨條例》第169條發布的《操守準則》的地位和影響？",
                 items_en: [
-                    "A failure to comply with a code of conduct is not an automatic breach of law and does not by itself constitute an offence.",
+                    "A failure to comply with a code of conduct is not an automatic breach of law.",
                     "Breaches of codes of conduct may be taken into account by the SFC to determine if an individual remains 'fit and proper'.",
-                    "Courts hearing legal proceedings under the SFO shall consider code provisions if deemed relevant to the determination.",
+                    "Courts hearing legal proceedings under the SFO shall consider code provisions if deemed relevant.",
                     "The codes possess complete criminal statutory powers and override the primary text of the SFO."
                 ],
                 items_zh: [
-                    "不遵守操守準則並不自動構成違反法律，其本身並不構成犯罪。",
+                    "不遵守操守準則並不自動構成違反法律。",
                     "違反操守準則可能會被證監會考慮，以判定某人是否仍然屬於「適當人選」。",
                     "法院在審理《證券及期貨條例》下的法律訴訟時，如果認為相關，應考慮準則的條文。",
                     "該等準則具有完整的刑事法定權力，並可凌駕於《證券及期貨條例》的主文之上。"
@@ -335,44 +326,247 @@
                     { key: "B", en: "I and IV only", zh: "只有I 及IV" },
                     { key: "C", en: "II and IV only", zh: "只有II 及IV" },
                     { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
-                ],
-                correct: "A",
-                explain: "SFO Part VII section 9.2 states that while a breach of the codes is not an automatic legal offence, it directly affects 'fit and proper' status and holds legal recognition because courts are mandated to consider relevant code provisions. Item IV is false."
+                ], correct: "A",
+                explain: "SFO section 169 states that codes are non-statutory but directly impact fitness/properness evaluation and are admissible in court. Statement IV is false."
             },
             {
-                id: 6,
-                type: "standard",
-                q_en: "Under the joint regulation framework for Registered Institutions (AFIs conducting regulated activities), which regulatory body acts as the frontline supervising entity?",
+                id: 6, type: "standard",
+                q_en: "Under the joint regulation framework for Registered Institutions, which regulatory body acts as the frontline supervising entity?",
                 q_zh: "在對註冊機構（從事受規管活動的AFI）的聯合監管架構下，哪一個監管機構擔任一線監督實體？",
                 options: [
                     { key: "A", en: "The Securities and Futures Commission (SFC) exclusively.", zh: "完全由證券及期貨事務監察委員會（證監會）負責。" },
                     { key: "B", en: "The Hong Kong Monetary Authority (HKMA).", zh: "香港金融管理局（金管局）。" },
                     { key: "C", en: "The Financial Services and the Treasury Bureau (FSTB).", zh: "財經事務及庫務局（財庫局）。" },
                     { key: "D", en: "The Stock Exchange of Hong Kong Limited (SEHK).", zh: "香港聯合交易所有限公司（聯交所）。" }
-                ],
-                correct: "B",
-                explain: "Topic 4 Section 1.11 establishes that Authorized Financial Institutions (AFIs) are jointly regulated, with the HKMA being the front-line regulator applying SFC criteria (including fitness and properness and business conduct)."
+                ], correct: "B",
+                explain: "Authorized Financial Institutions (AFIs) are jointly regulated, with the HKMA being the front-line regulator applying SFC criteria."
             },
             {
-                id: 7,
-                type: "standard",
+                id: 7, type: "standard",
                 q_en: "What power does the SFO explicitly grant the SFC under Part XVI regarding ongoing civil court proceedings between third parties?",
                 q_zh: "根據《證券及期貨條例》第XVI部，條例明確授予證監會關於第三方之間正在進行的民事法院訴訟的什麼權力？",
                 options: [
-                    { key: "A", en: "The SFC can instantly dismiss any private civil lawsuit without the court's permission.", zh: "證監會可以無需法院批准，立即駁回任何私人民事訴訟。" },
-                    { key: "B", en: "The SFC has the power to intervene in civil proceedings between third parties in cases concerning matters under the SFO or certain parts of the Companies Ordinance (CO), subject to court approval.", zh: "證監會有權在涉及《證券及期貨條例》事項或《公司條例》（CO）某些部分的案件中，介入第三方之間的民事訴訟，但須獲得法院批准。" },
-                    { key: "C", en: "The SFC is structurally banned from participating in or tracking civil common law cases.", zh: "證監會在結構上被禁止參與或追踪民事普通法案件。" },
+                    { key: "A", en: "The SFC can instantly dismiss any private civil lawsuit.", zh: "證監會可以立即駁回任何私人民事訴訟。" },
+                    { key: "B", en: "The SFC has the power to intervene in civil proceedings between third parties in cases concerning matters under the SFO or certain parts of the Companies Ordinance, subject to court approval.", zh: "證監會有權在涉及《證券及期貨條例》事項或《公司條例》某些部分的案件中，介入第三方之間的民事訴訟，但須獲得法院批准。" },
+                    { key: "C", en: "The SFC is structurally banned from participating in civil cases.", zh: "證監會在結構上被禁止參與民事案件。" },
                     { key: "D", en: "The SFC can alter civil damage amounts awarded by judges at its discretion.", zh: "證監會可以自行裁量修改法官判給的民事損害賠償金額。" }
+                ], correct: "B",
+                explain: "SFO Part XVI explicitly notes that the SFC has the power to intervene in civil proceedings between third parties concerning SFO matters, subject to court approval."
+            },
+            {
+                id: 8, type: "standard",
+                q_en: "Which of the following is an unlisted, statutory body established to handle alternative dispute resolution between intermediaries and retail clients in Hong Kong?",
+                q_zh: "下列哪一項是為處理香港中介人與零售客戶之間的替代糾紛解決而設立的非上市法定機構？",
+                options: [
+                    { key: "A", en: "The Market Misconduct Tribunal (MMT).", zh: "市場失當行為審裁處（MMT）。" },
+                    { key: "B", en: "The Financial Dispute Resolution Centre (FDRC).", zh: "金融糾紛調解中心（FDRC）。" },
+                    { key: "C", en: "The Securities and Futures Appeals Tribunal (SFAT).", zh: "證券及期貨事務上訴審裁處（SFAT）。" },
+                    { key: "D", en: "The Hong Kong International Arbitration Centre (HKIAC).", zh: "香港國際仲裁中心（HKIAC）。" }
+                ], correct: "B",
+                explain: "The FDRC administers an independent dispute resolution scheme via mediation and arbitration specifically for financial consumers and intermediaries."
+            },
+            {
+                id: 9, type: "roman",
+                q_en: "Under the SFO, which of the following activities represent civil market misconduct overseen by the Market Misconduct Tribunal (MMT)?",
+                q_zh: "根據《證券及期貨條例》，下列哪些活動代表由市場失當行為審裁處（MMT）監督的民事市場失當行為？",
+                items_en: [
+                    "Insider dealing.",
+                    "False trading.",
+                    "Price rigging.",
+                    "Disclosure of false or misleading information inducing transactions."
                 ],
-                correct: "B",
-                explain: "SFO Part XVI Section 17.3 explicitly notes that the SFC has the power to intervene in civil proceedings between third parties in cases concerning SFO matters or certain parts of the CO, subject to court approval."
+                items_zh: [
+                    "內幕交易。",
+                    "虛假交易。",
+                    "操縱價格。",
+                    "披露虛假或具誤導性的資料以誘使進行交易。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有I 及II" },
+                    { key: "B", en: "I, II and III only", zh: "只有I、II 及III" },
+                    { key: "C", en: "III and IV only", zh: "只有III 及IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
+                ], correct: "D",
+                explain: "The SFO identifies six types of market misconduct under both civil (MMT) and criminal routes, including insider dealing, false trading, and price rigging."
+            },
+            {
+                id: 10, type: "standard",
+                q_en: "An individual applicant applying to be an SFC licensed representative must satisfy the SFC that they are:",
+                q_zh: "申請成為證監會持牌代表的個人申請人必須向證監會證明其為：",
+                options: [
+                    { key: "A", en: "A permanent resident of Hong Kong with high credit standing.", zh: "香港永久居民且信用卓越。" },
+                    { key: "B", en: "Fit and proper, considering their financial status, educational qualifications, competence, honesty, and integrity.", zh: "屬於「適當人選」，考慮因素包括其財政狀況、學歷、能力、誠實及廉潔信用。" },
+                    { key: "C", en: "A holder of a university degree specifically in finance or macroeconomics.", zh: "持有專門金融或宏觀經濟學的大學學位。" },
+                    { key: "D", en: "Exempt from all professional local exam requirements under all conditions.", zh: "在任何情況下均獲豁免所有本地專業考試要求。" }
+                ], correct: "B",
+                explain: "The cornerstone of licensing is the 'fit and proper' test, which evaluates financial integrity, educational qualifications, honesty, and overall competence."
+            },
+            {
+                id: 11, type: "standard",
+                q_en: "What is the maximum period of suspension the SFC can execute on an intermediary's licence for major disciplinary infractions under Part IX of the SFO?",
+                q_zh: "根據《證券及期貨條例》第IX部，對於重大違紀行為，證監會對中介人牌照可行使的最長暫時吊銷期限是多少？",
+                options: [
+                    { key: "A", en: "An indefinite period or specific duration determined by the SFC.", zh: "無限期或由證監會決定的特定期限。" },
+                    { key: "B", en: "Strictly limited to a maximum of 12 months under all conditions.", zh: "在所有情況下嚴格限制在最多12個月。" },
+                    { key: "C", en: "A maximum of 3 years.", zh: "最多3年。" },
+                    { key: "D", en: "No more than 90 operational business days.", zh: "不超過90個業務營運日。" }
+                ], correct: "A",
+                explain: "Under Part IX disciplinary powers, the SFC can revoke a licence completely or suspend it for an indefinite period or a specific duration."
+            },
+            {
+                id: 12, type: "roman",
+                q_en: "Under the Securities and Futures (Client Money) Rules, client money received by a licensed corporation must be deposited into a segregated trust account within how many business days?",
+                q_zh: "根據《證券及期貨（客戶款項）規則》，持牌法團收到的客戶款項必須在多少個業務日之內存入隔離的信託帳戶？",
+                items_en: [
+                    "Within 1 business day after receiving the money.",
+                    "Within 3 business days after receiving the money.",
+                    "Within 5 business days if approved by senior management.",
+                    "Within 24 hours of execution."
+                ],
+                items_zh: [
+                    "在收到款項後之1個業務日之內。",
+                    "在收到款項後之3個業務日之內。",
+                    "如果獲得高級管理層批准，則在5個業務日之內。",
+                    "在執行後之24小時之內。"
+                ],
+                options: [
+                    { key: "A", en: "I only", zh: "只有I" },
+                    { key: "B", en: "II only", zh: "只有II" },
+                    { key: "C", en: "I and III only", zh: "只有I 及III" },
+                    { key: "D", en: "IV only", zh: "只有IV" }
+                ], correct: "A",
+                explain: "The Client Money Rules dictate that client money must be paid into a segregated account within one business day of receipt."
+            },
+            {
+                id: 13, type: "standard",
+                q_en: "Which entity operates as the final appellate body to hear appeals against regulatory decisions made by the SFC regarding licensing and disciplinary actions?",
+                q_zh: "哪一個實體作為最終上訴機構，負責審理針對證監會就牌照及紀律處分行動所作出的監管決定的上訴？",
+                options: [
+                    { key: "A", en: "The High Court of Hong Kong directly.", zh: "直接由香港高等法院審理。" },
+                    { key: "B", en: "The Securities and Futures Appeals Tribunal (SFAT).", zh: "證券及期貨事務上訴審裁處（SFAT）。" },
+                    { key: "C", en: "The Legislative Council financial panel.", zh: "立法會財經事務面板。" },
+                    { key: "D", en: "The Executive Council of Hong Kong.", zh: "香港行政會議。" }
+                ], correct: "B",
+                explain: "The SFAT is an independent statutory body chaired by a judge, established to review 'specified decisions' made by the SFC."
+            },
+            {
+                id: 14, type: "standard",
+                q_en: "Under the Code of Conduct, a licensed corporation must retain all client telephone order recordings for a minimum statutory period of:",
+                q_zh: "根據《操守準則》，持牌法團必須將所有客戶電話下單錄音至少保存法定之：",
+                options: [
+                    { key: "A", en: "30 days.", zh: "30天。" },
+                    { key: "B", en: "6 months.", zh: "6個月。" },
+                    { key: "C", en: "2 years.", zh: "2年。" },
+                    { key: "D", en: "7 years.", zh: "7年。" }
+                ], correct: "B",
+                explain: "The SFC Code of Conduct states that telephone order recordings must be retained for at least six months."
+            },
+            {
+                id: 15, type: "roman",
+                q_en: "Which of the following conditions must be satisfied for a cold-call to escape criminal classification under the SFO unsolicited electronic/physical call prohibitions?",
+                q_zh: "在《證券及期貨條例》禁止未獲邀約的電子/實體電話招攬規定下，冷call必須滿足下列哪些條件才能免於刑事歸類？",
+                items_en: [
+                    "The recipient is an existing client of the intermediary.",
+                    "The recipient is a Professional Investor as defined under the SFO.",
+                    "The caller only offers advice without executing formal contracts.",
+                    "The communication is made directly to a listed corporation's board member."
+                ],
+                items_zh: [
+                    "接收者是該中介人的現有客戶。",
+                    "接收者是《證券及期貨條例》所定義的專業投資者。",
+                    "撥打電話者僅提供建議而不執行正式合同。",
+                    "該通訊是直接向一家上市公司之董事會成員進行。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有I 及II" },
+                    { key: "B", en: "I and III only", zh: "只有I 及III" },
+                    { key: "C", en: "III and IV only", zh: "只有III 及IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
+                ], correct: "A",
+                explain: "Unsolicited calls (cold calling) are restricted under section 174 of the SFO, but exemptions apply if the person is an existing client or a Professional Investor."
+            },
+            {
+                id: 16, type: "standard",
+                q_en: "What type of account structure is required if an intermediary holds securities on behalf of multiple retail clients inside a clearing system?",
+                q_zh: "如果中介人代表結算系統內的多個零售客戶持有證券，需要採用哪種類型的帳戶結構？",
+                options: [
+                    { key: "A", en: "An omnibus client account clearly separated from the intermediary's proprietary house account.", zh: "與中介人自營自資帳戶清晰分開的綜合客戶帳戶。" },
+                    { key: "B", en: "A consolidated single pool tracking both company and client capital simultaneously.", zh: "同時追踪公司和客戶資金的合併單一資金池。" },
+                    { key: "C", en: "An anonymous discretionary escrow unit ledger.", zh: "匿名全權委託託管單元分類帳。" },
+                    { key: "D", en: "An overseas bearer vehicle depositary wrapper.", zh: "海外不記名工具保管人包裝袋。" }
+                ], correct: "A",
+                explain: "Intermediaries must separate house assets from client assets, typically holding client securities in an omnibus client account."
+            },
+            {
+                id: 17, type: "standard",
+                q_en: "Under the Prevention of Money Laundering guidelines, what is the core initial step required when onboarding a brand-new corporate client?",
+                q_zh: "根據打擊洗錢指引，在吸納全新的公司客戶時，所需的核心初步步驟是什麼？",
+                options: [
+                    { key: "A", en: "Customer Due Diligence (CDD) to verify the legal status, beneficial ownership, and control structure of the company.", zh: "客戶盡職審查（CDD）以核實公司的法律地位、實質受益所有權及控制權架構。" },
+                    { key: "B", en: "Securing an immediate minimum cash guarantee escrow deposit.", zh: "立即獲得最低現金擔保託管存款。" },
+                    { key: "C", en: "Filing a Suspicious Transaction Report (STR) to the Joint Financial Intelligence Unit (JFIU) automatically.", zh: "自動向聯合財富情報組（JFIU）提交虛假或可疑交易報告（STR）。" },
+                    { key: "D", en: "Obtaining direct written approval from the Financial Secretary.", zh: "獲得財政司司長的直接書面批准。" }
+                ], correct: "A",
+                explain: "Intermediaries are required to conduct Customer Due Diligence (CDD) to identify and verify the customer and any beneficial owners."
+            },
+            {
+                id: 18, type: "roman",
+                q_en: "Under the SFO, structural disclosure rules require substantial shareholders of a listed corporation to disclose their interest stakes when they reach or pass what benchmark percentage?",
+                q_zh: "根據《證券及期貨條例》，結構性披露規則要求上市公司的大股東在權益持股達到或超過什麼基準百分比時進行披露？",
+                items_en: [
+                    "5% initial threshold for disclosure.",
+                    "1% changes once above the baseline.",
+                    "10% initial baseline for unlisted debt instruments.",
+                    "0.5% shift on any given single trading session day."
+                ],
+                items_zh: [
+                    "5% 的初始披露門檻。",
+                    "超過基線後，每當變動達 1%。",
+                    "非上市債務工具的 10% 初始基線。",
+                    "在任何給定的單個交易日環節中變動 0.5%。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有I 及II" },
+                    { key: "B", en: "III and IV only", zh: "只有III 及IV" },
+                    { key: "C", en: "I and III only", zh: "只有I 及III" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及IV 全對" }
+                ], correct: "A",
+                explain: "Part XV of the SFO sets the notification threshold for substantial shareholders at 5%, with subsequent disclosure required for changes crossing a whole percentage point (1%)."
+            },
+            {
+                id: 19, type: "standard",
+                q_en: "If an executive director of a licensed corporation resigns from their position, within what maximum timeframe must the corporation notify the SFC?",
+                q_zh: "如果持牌法團的執行董事辭職，法團必須在最長多長時間之內通知證監會？",
+                options: [
+                    { key: "A", en: "Within 7 business days.", zh: "7個業務日之內。" },
+                    { key: "B", en: "Within 7 calendar days.", zh: "7個日曆天之內。" },
+                    { key: "C", en: "Within 14 days of the event.", zh: "事件發生之日起 14 天內。" },
+                    { key: "D", en: "Immediately on the next immediate financial clearing cycle closing bell.", zh: "在下一個緊接的財政結算週期收市鐘響起時。" }
+                ], correct: "C",
+                explain: "The SFO requires licensed corporations to notify the SFC of any changes in their directors or registered details within 14 days."
+            },
+            {
+                id: 20, type: "standard",
+                q_en: "Which internal corporate officer carries the ultimate, non-delegable accountability for ensuring compliance frameworks are functional inside an SFC licensed corporation?",
+                q_zh: "哪一位公司內部高級管理人員，對於確保持牌法團內部的合規架構正常運作，承擔最終且不可轉讓的責任？",
+                options: [
+                    { key: "A", en: "The external independent statutory auditor.", zh: "外部獨立法定核數師。" },
+                    { key: "B", en: "The Board of Directors and designated Managers-in-Charge (MICs) of Core Functions.", zh: "董事會及核心職能的指定核心職能主管（MIC）。" },
+                    { key: "C", en: "The junior settlement officer handling transaction confirmation routing.", zh: "處理交易確認路由的初級結算人員。" },
+                    { key: "D", en: "The individual retail customer counter party.", zh: "個人零售客戶交易對手方。" }
+                ], correct: "B",
+                explain: "The SFC's Manager-in-Charge (MIC) framework and the Code of Conduct place ultimate responsibility for compliance and internal controls squarely on senior management."
             }
         ];
 
-        let generatedQuestions = [...staticQuestions];
+        let activeQuestions = [];
+
+        function getRandomQuestions(bank, numToSelect) {
+            let shuffled = [...bank].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, numToSelect);
+        }
 
         function switchMode(mode) {
-            // Paper 1 core locked state notification loop
             if(mode !== 'Paper 1') return;
             regenerateTest();
         }
@@ -387,6 +581,9 @@
             document.getElementById('quiz-form').style.display = 'block';
             document.getElementById('submit-exam-btn').style.display = 'inline-block';
             document.getElementById('results-screen').style.display = 'none';
+            
+            // TARGET: 20 RANDOMIZED SELECTIONS PER LOOPS
+            activeQuestions = getRandomQuestions(questionBank, 20);
             renderQuiz();
         }
 
@@ -394,10 +591,10 @@
             const container = document.getElementById('questions-container');
             container.innerHTML = '';
 
-            generatedQuestions.forEach((q, idx) => {
+            activeQuestions.forEach((q, idx) => {
                 let html = `
                     <div class="quiz-card" id="card-${q.id}">
-                        <div class="q-meta">Official Syllabus Core • Question ${idx + 1} of ${generatedQuestions.length}</div>
+                        <div class="q-meta">Dynamic Session Loop • Question ${idx + 1} of ${activeQuestions.length}</div>
                         <div class="q-text">
                             <div class="lang-en">${q.q_en}</div>
                             <div class="lang-zh">${q.q_zh}</div>
@@ -438,13 +635,12 @@
 
         function gradeExam() {
             let score = 0;
-            const total = generatedQuestions.length;
+            const total = activeQuestions.length;
 
-            generatedQuestions.forEach(q => {
+            activeQuestions.forEach(q => {
                 const selected = document.querySelector(`input[name="question-${q.id}"]:checked`);
                 const userAns = selected ? selected.value : null;
                 
-                // Expose every explanation block instantly inside the active document layout
                 document.getElementById(`explain-${q.id}`).style.display = 'block';
                 document.getElementById(`label-${q.id}-${q.correct}`).classList.add('correct-answer');
 
@@ -457,16 +653,15 @@
 
             const finalPct = Math.round((score / total) * 100);
             
-            // Show review panel safely
             document.getElementById('results-screen').style.display = 'block';
             document.getElementById('score-display').innerText = `${finalPct}%`;
-            document.getElementById('score-meta').innerText = `You scored ${score} out of ${total} questions correctly. Passing threshold is 70%.`;
+            document.getElementById('score-meta').innerText = `You scored ${score} out of ${total} questions correctly. Passing score threshold is 70%.`;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.onload = () => {
-            renderQuiz();
+            regenerateTest();
         };
     </script>
 </body>
