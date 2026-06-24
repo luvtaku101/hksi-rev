@@ -242,11 +242,311 @@
     </div>
 
     <script>
-        // EXPANDED PAPER 6 DATA POOL CATEGORIZED BY CORE REGULATORY TOPICS
+        // MASTER COMBINED QUESTION BANK (50 HIGH-YIELD QUESTIONS POOL)
         const questionBank = [
-// --- ADDITIONAL INJECTION PACK (30 NEW QUESTIONS) ---
+            // --- ORIGINAL SET ---
+            {
+                id: 101, topic: "FMCC Core Operations", type: "standard",
+                q_en: "Under the updated Fund Manager Code of Conduct (FMCC), which structure is strictly required for independent safe custody of authorized fund assets?",
+                q_zh: "根據最新的《基金經理操守準則》（FMCC），獲認可基金資產的獨立妥善保管嚴格需要哪種架構？",
+                options: [
+                    { key: "A", en: "An overseas broker with a basic credit rating wrapper.", zh: "具備基本信用評級包裝的海外經紀商。" },
+                    { key: "B", en: "An independent qualified custodian or functional segregation of the custody structure from the investment management arm.", zh: "獨立的合資格保管人，或將保管架構與投資管理部門進行職能隔離。" },
+                    { key: "C", en: "A self-certified escrow sub-ledger managed by the primary portfolio manager.", zh: "由主要投資組合經理管理的自我認證託管子分類帳。" },
+                    { key: "D", en: "An unregistered private trust entity inside an opaque tax haven.", zh: "不透明稅收天堂內未註冊的私人信託實體。" }
+                ], correct: "B",
+                explain: "The FMCC dictates that a fund manager must ensure the safe custody of fund assets, requiring either an independent qualified custodian or robust functional segregation from investment duties."
+            },
+            {
+                id: 102, topic: "FMCC Core Operations", type: "standard",
+                q_en: "What baseline operational directive must an asset manager enforce when executing a cross-trade between two discretionary client accounts?",
+                q_zh: "資產經理在兩個全權委託客戶帳戶之間執行跨交易（Cross-trade）時，必須執行什麼基線業務指令？",
+                options: [
+                    { key: "A", en: "The trade must be executed at arm's length at current fair market volume value with zero profit/loss skewing, and requires explicit disclosure or prior consent.", zh: "交易必須按照公平條例以當前公平市場價值執行，且利潤/損失無偏斜，並需要明確披露或事先同意。" },
+                    { key: "B", en: "The higher net asset value account must absorb all transaction slippage fees.", zh: "資產淨值較高的帳戶必須吸收所有的交易滑點費用。" },
+                    { key: "C", en: "Cross-trades must always be routed through dark pool networks without statutory tracking logs.", zh: "跨交易必須始終通過沒有法定追踪日誌的暗池網絡進行路由。" },
+                    { key: "D", en: "The manager may collect asymmetrical performance premiums from both sides concurrently.", zh: "經理人可同時向雙方收取不對稱的業績溢價。" }
+                ], correct: "A",
+                explain: "FMCC rules require cross-trades to be in the best interest of both clients, executed at arm's length at current market price, and fully documented with internal approval processes."
+            },
+            {
+                id: 103, topic: "FMCC Core Operations", type: "roman",
+                q_en: "Under the FMCC provisions regarding Soft Dollar arrangements, which of the following goods or services can an asset manager legally accept from brokers?",
+                q_zh: "根據關於軟美元（軟佣金）安排的 FMCC 規定，資產經理可以合法接受經紀商提供的下列哪些商品或服務？",
+                items_en: [
+                    "Specialized macroeconomic investment research software panels.",
+                    "General office furniture and operational administrative utility systems.",
+                    "Direct financial market data feed terminal subscriptions.",
+                    "Corporate travel hospitality expenses and premium client dining vouchers."
+                ],
+                items_zh: [
+                    "專業的宏觀經濟投資研究軟件面板。",
+                    "一般辦公家具和業務行政公用事業系統。",
+                    "直接的金融市場數據饋送終端訂閱。",
+                    "企業旅遊招待費用和高級客戶餐飲券。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
+                    { key: "B", en: "I and III only", zh: "只有 I 及 III" },
+                    { key: "C", en: "II and IV only", zh: "只有 II 及 IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
+                ], correct: "B",
+                explain: "Soft dollars must strictly provide direct, demonstrable benefit to clients (e.g., research, analytical software, market data). General overhead (furniture, travel, entertainment) is strictly prohibited."
+            },
+            {
+                id: 104, topic: "FMCC Core Operations", type: "standard",
+                q_en: "If a Type 9 licensed asset manager delegates investment management functions to an overseas sub-manager, what is the regulatory impact regarding accountability?",
+                q_zh: "如果第 9 類持牌資產經理將投資管理職能委託給海外副經理，關於問責制的監管影響是什麼？",
+                options: [
+                    { key: "A", en: "The primary licensed manager completely sheds all regulatory liabilities to the SFC.", zh: "主要持牌經理完全免除對證監會的所有監管責任。" },
+                    { key: "B", en: "The primary licensed manager remains fully accountable and must exercise continuous effective oversight and due diligence.", zh: "主要持牌經理仍須承擔完整責任，且必須行使持續的有效監督及盡職審查。" },
+                    { key: "C", en: "The arrangement is automatically invalid unless approved by the Financial Secretary.", zh: "除非獲得財政司司長批准，否則該安排自動無效。" },
+                    { key: "D", en: "The sub-manager becomes an automatic Registered Institution without further scrutiny.", zh: "副經理自動成為認可機構，無需進一步審查。" }
+                ], correct: "B",
+                explain: "Delegation does not absolve the primary asset manager of its regulatory duties. Ultimate accountability remains with the SFC licensee, who must monitor the delegate effectively."
+            },
+            {
+                id: 201, topic: "UT Code & Public Schemes", type: "standard",
+                q_en: "According to the Code on Unit Trusts and Mutual Funds, what is the standard maximum exposure limit of a public fund's total Net Asset Value (NAV) to a single issuing entity?",
+                q_zh: "根據《單位信託及互惠基金守則》，公開基金對單一發行實體的總資產淨值（NAV）標準最高風險敞口限制是多少？",
+                options: [
+                    { key: "A", en: "5%", zh: "5%" },
+                    { key: "B", en: "10%", zh: "10%" },
+                    { key: "C", en: "15%", zh: "15%" },
+                    { key: "D", en: "25%", zh: "25%" }
+                ], correct: "B",
+                explain: "The core core diversification rule in the UT Code restricts the value of a scheme's holding of securities issued by any single entity to a maximum of 10% of its total NAV."
+            },
+            {
+                id: 202, topic: "UT Code & Public Schemes", type: "roman",
+                q_en: "Under the SFC UT Code investment restrictions, which of the following asset configurations are prohibited or strictly limited for a standard public mutual fund?",
+                q_zh: "在證監會《單位信託及互惠基金守則》投資限制下，下列哪些資產配置對標準公開互惠基金而言是被禁止或受到嚴格限制的？",
+                items_en: [
+                    "Direct investment in physical real estate properties or real estate titles.",
+                    "Unlisted warrants exceeding 10% of total NAV pool allocations.",
+                    "Unlimited exposure to highly illiquid physical commodities markets.",
+                    "Highly diversified listed equities traded on recognized blue-chip exchanges."
+                ],
+                items_zh: [
+                    "直接投資於實體房地產物業或房地產地契。",
+                    "非上市認股權證超過總資產淨值資金池配置的 10%。",
+                    "對高流動性低、實體商品市場的無限風險敞口。",
+                    "在認可藍籌交易所交易的高度多元化上市股票。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
+                    { key: "B", en: "I, II and III only", zh: "只有 I、II 及 III" },
+                    { key: "C", en: "III and IV only", zh: "只有 III 及 IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
+                ], correct: "B",
+                explain: "Public mutual funds cannot invest directly in real estate, are capped at 10% for unlisted warrants, and cannot take unchecked exposure to physical commodities. Diversified equities (IV) are standard and encouraged."
+            },
+            {
+                id: 203, topic: "UT Code & Public Schemes", type: "standard",
+                q_en: "When structuring a Fund-of-Funds (FoF) under SFC authorization, what fee structure configuration is strictly banned to protect retail investors?",
+                q_zh: "在證監會認可下構建基金中的基金（FoF）時，為了保護零售投資者，嚴格禁止哪種費用結構配置？",
+                options: [
+                    { key: "A", en: "Double-charging of management or initial fees at both the top FoF level and the underlying associated schemes.", zh: "在頂層 FoF 級別和底層關聯計劃中同時雙重收取管理費或初始費用。" },
+                    { key: "B", en: "Charging a basic fee structure audited annually by an independent third party.", zh: "收取由獨立第三方每年審計的基本費用結構。" },
+                    { key: "C", en: "Waiving initial sales loads completely for underlying portfolio changes.", zh: "針對底層投資組合變動完全豁免初始銷售費用。" },
+                    { key: "D", en: "Offering variable volume discounts to long-term systemic account holders.", zh: "向長期系統性帳戶持有人提供可變的數量折扣。" }
+                ], correct: "A",
+                explain: "The UT Code prohibits double-charging of initial or management fees by the management company (or its associated entities) across both layers of a Fund-of-Funds."
+            },
+            {
+                id: 204, topic: "UT Code & Public Schemes", type: "standard",
+                q_en: "What is the absolute maximum limit regarding underwriting and sub-underwriting commitments allowed for a public authorized scheme?",
+                q_zh: "公開認可計劃允許的承銷及分承銷承諾的絕對最高限制是多少？",
+                options: [
+                    { key: "A", en: "5% of total fund net asset value.", zh: "總基金資產淨值的 5%。" },
+                    { key: "B", en: "15% of total fund net asset value.", zh: "總基金資產淨值的 15%。" },
+                    { key: "C", en: "30% of total fund net asset value.", zh: "總基金資產淨值的 30%。" },
+                    { key: "D", en: "Underwriting is structurally prohibited under all conditions.", zh: "在任何情況下，結構上都禁止進行承銷。" }
+                ], correct: "B",
+                explain: "The UT Code stipulates that the total value of underwriting or sub-underwriting commitments of a public scheme must not exceed 15% of its total Net Asset Value."
+            },
+            {
+                id: 301, topic: "Specialized Fund Vehicles", type: "standard",
+                q_en: "An Open-ended Fund Company (OFC) registered in Hong Kong represents what type of legal and corporate legal vehicle structure?",
+                q_zh: "在香港註冊的開放式基金公司（OFC）代表哪種類型的法律和法人工具結構？",
+                options: [
+                    { key: "A", en: "A basic unincorporated private partnership structure with rigid share capitals.", zh: "具備僵化股本的基本非合夥制私人合夥結構。" },
+                    { key: "B", en: "An open-ended collective investment scheme structured as a corporate entity with variable capital and limited liability.", zh: "構建為具有可變股本及有限責任之法團實體的開放式集體投資計劃。" },
+                    { key: "C", en: "A trust wrapper that requires an unlisted external deed poll for all redemptions.", zh: "所有贖回均需要非上市外部單方契據的信託包裝。" },
+                    { key: "D", en: "A pure statutory entity entirely exempted from corporate tax filing systems.", zh: "完全豁免於公司稅務申報系統的純法定實體。" }
+                ], correct: "B",
+                explain: "OFCs are public or private fund structures set up as a corporate body with variable capital under the SFO, allowing shares to be flexible based on client subscription/redemption."
+            },
+            {
+                id: 302, topic: "Specialized Fund Vehicles", type: "standard",
+                q_en: "According to the SFC's Code on Real Estate Investment Trusts (REITs), what is the mandatory minimum annual net income distribution percentage?",
+                q_zh: "根據證監會的《房地產投資信託基金（REITs）守則》，強制性的最低年度淨收入分配百分比是多少？",
+                options: [
+                    { key: "A", en: "50% payout ratio.", zh: "50% 的派息率。" },
+                    { key: "B", en: "75% payout ratio.", zh: "75% 的派息率。" },
+                    { key: "C", en: "90% payout ratio.", zh: "90% 的派息率。" },
+                    { key: "D", en: "100% complete payout loop.", zh: "100% 的完整派息循環。" }
+                ], correct: "C",
+                explain: "The REIT Code explicitly mandates that an authorized REIT must distribute to unitholders as dividends each year an amount that is no less than 90% of its net audited income after tax."
+            },
+            {
+                id: 303, topic: "Specialized Fund Vehicles", type: "roman",
+                q_en: "Which of the following legal rules accurately state the statutory borrowing ceilings and structural leverages for public Open-ended Fund Companies (OFCs)?",
+                q_zh: "下列哪些法律規則準確地陳述了公開開放式基金公司（OFC）的法定借貸上限及結構性槓桿？",
+                items_en: [
+                    "Borrowings may be executed for temporary liquidity or redemption funding.",
+                    "Total bank borrowings cannot exceed 10% of the public scheme's total NAV.",
+                    "OFC directors can pledge corporate assets without limitation to secure personal capital.",
+                    "Private OFCs enjoy customized, higher statutory borrowing ratios compared to public ones."
+                ],
+                items_zh: [
+                    "可為臨時流動性或贖回資金執行借款。",
+                    "總銀行借款不能超過公開計劃總資產淨值的 10%。",
+                    "OFC 董事可以無限制抵押公司資產以獲取個人資金。",
+                    "與公開 OFC 相比，私人 OFC 享有定制的、更高的法定借貸比例。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
+                    { key: "B", en: "I, II and IV only", zh: "只有 I、II 及 IV" },
+                    { key: "C", en: "III and IV only", zh: "只有 III 及 IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
+                ], correct: "B",
+                explain: "Public OFCs are limited to 10% borrowing of NAV for temporary liquidity under standard rules. Private OFCs have higher structural flexibility defined in their instrument of incorporation. Directors pledging assets for personal cash (III) is illegal."
+            },
+            {
+                id: 304, topic: "Specialized Fund Vehicles", type: "standard",
+                q_en: "What specific operational rule governs the appointment of a custodian for an SFC authorized public OFC?",
+                q_zh: "哪項特定業務規則管理證監會認可公開 OFC 保管人的任命？",
+                options: [
+                    { key: "A", en: "The custodian must be completely independent of the investment manager and meet capital resource requirements akin to traditional unit trust trustees.", zh: "保管人必須完全獨立於投資經理，且滿足類似於傳統單位信託受託人的資本資源要求。" },
+                    { key: "B", en: "Any licensed representative with an active Type 1 registration can act as a custodian.", zh: "任何持有有效第 1 類註冊的持牌代表均可擔任保管人。" },
+                    { key: "C", en: "The custodian role can be performed directly by the core portfolio software engine.", zh: "保管人職能可直接由核心投資組合軟件引擎執行。" },
+                    { key: "D", en: "A public OFC is explicitly exempted from hiring an external custodian.", zh: "公開 OFC 被明確豁免聘請外部保管人。" }
+                ], correct: "A",
+                explain: "The SFO and OFC Rules require an independent qualified custodian that fits specified credit and asset safety eligibility requirements to safeguard public corporate fund assets."
+            },
+            {
+                id: 401, topic: "Risk & Valuation Frameworks", type: "standard",
+                q_en: "Under the risk management mandates, what is the required statutory frequency for performing liquidity stress testing on complex portfolio pools?",
+                q_zh: "在風險管理指令下，對複雜投資組合資金池進行流動性壓力測試的法定要求頻率是多少？",
+                options: [
+                    { key: "A", en: "Once every fiscal cycle closing window.", zh: "每個財政週期關閉窗口一次。" },
+                    { key: "B", en: "Regularly and systematically, typically at least monthly, or more frequently if required by shifting market conditions.", zh: "定期且系統性地進行，通常至少每月一次，如果市場條件發生變化，則須提高頻率。" },
+                    { key: "C", en: "Only when explicitly demanded by an independent external court order.", zh: "僅在獨立外部法院命令明確要求時才進行。" },
+                    { key: "D", en: "Once every calendar decade.", zh: "每曆年十年一次。" }
+                ], correct: "B",
+                explain: "The SFC emphasizes that fund managers must establish internal stress-testing systems to evaluate liquidity. Testing must be regular and adaptive, practically at least monthly."
+            },
+            {
+                id: 402, topic: "Risk & Valuation Frameworks", type: "roman",
+                q_en: "To ensure fair treatment of fund investors, an asset manager's valuation framework must incorporate which structural controls?",
+                q_zh: "為了確保護盤投資者獲得公平對待，資產經理的估值架構必須納入哪些結構性控制？",
+                items_en: [
+                    "Complete functional independence of the valuation process from the portfolio management team.",
+                    "Consistent apply-through of valuation methodologies verified by an independent auditor.",
+                    "Discretionary adjustment of asset values by frontline traders to maximize trailing performance.",
+                    "Clear escalation channels for tracking and correcting material net asset value pricing calculation errors."
+                ],
+                items_zh: [
+                    "估值流程與投資組合管理團隊之間完全的職能獨立性。",
+                    "一致應用經獨立審計師驗證的估值方法。",
+                    "前線交易員自行調控資產價值以最大化追蹤業績。",
+                    "清晰的升級渠道，用以追踪及糾正重大的資產淨值定價計算錯誤。"
+                ],
+                options: [
+                    { key: "A", en: "I and III only", zh: "只有 I 及 III" },
+                    { key: "B", en: "I, II and IV only", zh: "只有 I、II 及 IV" },
+                    { key: "C", en: "II and IV only", zh: "只有 II 及 IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
+                ], correct: "B",
+                explain: "Valuation processes must be segregated from investment decision-making (traders cannot manually alter prices to inflate performance, rendering III false). Regular audits and error-correction protocols are required."
+            },
+            {
+                id: 403, topic: "Risk & Valuation Frameworks", type: "standard",
+                q_en: "Which element is strictly prohibited from being included inside an official Investment Management Agreement (IMA) between a Type 9 licensee and a client?",
+                q_zh: "第 9 類持牌人與客戶之間的官方投資管理協議（IMA）中，嚴格禁止包含以下哪個要素？",
+                options: [
+                    { key: "A", en: "An explicit schedule outlining basic corporate management fee calculations.", zh: "列出基本公司管理費計算的明確明細表。" },
+                    { key: "B", en: "A formal absolute guarantee of investment returns or profit performance thresholds.", zh: "對投資回報或利潤業績門檻的正式絕對保證。" },
+                    { key: "C", en: "Detailed risk risk parameters matching the client's objective baseline.", zh: "與客戶目標基線匹配的詳細風險參數。" },
+                    { key: "D", en: "Procedures defining legal mediation routes if operational disputes trigger.", zh: "界定如果引發業務糾紛時法律調解途徑的程序。" }
+                ], correct: "B",
+                explain: "Under the Code of Conduct and general regulations, guarantees of performance or absolute return profit thresholds are strictly prohibited as they constitute false or misleading market representations."
+            },
+            {
+                id: 404, topic: "Risk & Valuation Frameworks", type: "standard",
+                q_en: "For discretionary account arrangements, what is the mandatory minimum distribution frequency for providing account statements to clients?",
+                q_zh: "對於全權委託帳戶安排，向客戶提供帳戶報表（結單）的強制性最低發放頻率是多少？",
+                options: [
+                    { key: "A", en: "Within 2 operational business days after every transaction loop.", zh: "在每次交易循環後之 2 個業務日之內。" },
+                    { key: "B", en: "Monthly basis distribution.", zh: "按月發放。" },
+                    { key: "C", en: "Quarterly tracking packets only.", zh: "僅限季度追踪數據包。" },
+                    { key: "D", en: "Annually within the corporate tax filing report envelope.", zh: "公司稅務申報報告封套內每年一次。" }
+                ], correct: "B",
+                explain: "The Securities and Futures (Contract Notes, Statements of Account and Receipts) Rules dictate that statements must be sent to discretionary clients on a monthly basis."
+            },
+            {
+                id: 501, topic: "SFO Licensing, Disclosures & AML", type: "standard",
+                q_en: "Under what specific statutory scenario can an asset management corporation escape holding a Type 9 license for portfolio operations?",
+                q_zh: "在何種特定法定場景下，資產管理公司可免於持有第 9 類牌照而進行投資組合營運？",
+                options: [
+                    { key: "A", en: "The corporation manages assets exclusively for its wholly-owned parent holding company, its wholly-owned subsidiaries, or fellow wholly-owned subsidiaries (Intra-group exemption).", zh: "該公司完全為其全資母控股公司、其全資附屬公司或同屬全資附屬公司的公司管理資產（集團內豁免）。" },
+                    { key: "B", en: "The asset pool contains fewer than 50 individual high-net-worth retail names.", zh: "資產池包含少於 50 個獨立的高淨值零售名單。" },
+                    { key: "C", en: "The management team executes transactions using encrypted blockchain frameworks.", zh: "管理團隊利用加密區塊鏈架構執行交易。" },
+                    { key: "D", en: "All equity positions are focused exclusively on listed infrastructure utilities.", zh: "所有股票部位均完全集中在上市基礎設施公用事業。" }
+                ], correct: "A",
+                explain: "The SFO provides an intra-group exemption for Type 9 licensing if the corporation provides asset management services solely to its group companies (wholly-owned relations)."
+            },
+            {
+                id: 502, topic: "SFO Licensing, Disclosures & AML", type: "roman",
+                q_en: "Under SFO Part XV substantial shareholder notification rules, what critical mechanical restriction applies when calculating derivative long/short exposures?",
+                q_zh: "根據《證券及期貨條例》第 XV 部大股東通知規則，在計算衍生工具長/短倉風險敞口時，適用什麼關鍵的機制限制？",
+                items_en: [
+                    "Long derivative exposure stakes cannot be offset or netted off against short derivative exposure stakes.",
+                    "Both short and long positions must be tracked independently and aggregated separately.",
+                    "Short derivative positions are completely exempted from notification if they fall below 5%.",
+                    "Netting is allowed exclusively if the positions are matched inside the clearing system on the same trading session."
+                ],
+                items_zh: [
+                    "衍生工具的長倉權益不能與衍生工具的短倉權益相互抵銷或淨額結算。",
+                    "空頭（短倉）和多頭（長倉）部位必須獨立追蹤並分開累計。",
+                    "如果短倉部位低於 5%，則完全豁免通知義務。",
+                    "僅當部位在同一交易時段內的結算系統內匹配時，才允許淨額結算。"
+                ],
+                options: [
+                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
+                    { key: "B", en: "III and IV only", zh: "只有 III 及 IV" },
+                    { key: "C", en: "I and IV only", zh: "只有 I 及 IV" },
+                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
+                ], correct: "A",
+                explain: "Part XV rules for disclosure of interests state that long and short positions cannot be netted off. They represent separate percentages and both require accurate calculations and disclosure."
+            },
+            {
+                id: 503, topic: "SFO Licensing, Disclosures & AML", type: "standard",
+                q_en: "Which onboarding scenario triggers an absolute statutory requirement to execute Enhanced Due Diligence (EDD) under AML regulations?",
+                q_zh: "根據打擊洗錢法規，哪種入職場景會引發執行增強型盡職審查（EDD）的絕對法定要求？",
+                options: [
+                    { key: "A", en: "A standard corporate account registered locally with a transparent ownership framework.", zh: "在本地註冊且所有權架構透明的標準公司帳戶。" },
+                    { key: "B", en: "The client is identified as a Politically Exposed Person (PEP) or originates from a high-risk jurisdiction blacklisted for terrorist financing.", zh: "客戶被識別為政治人物（PEP），或來自被列入恐怖分子籌資黑名單的高風險管轄區。" },
+                    { key: "C", en: "An institutional client routing trades through mainstream clearing hubs.", zh: "通過主流結算中心路由交易的機構客戶。" },
+                    { key: "D", en: "An employee of an authorized financial institution opening a basic retail joint account.", zh: "認可財務機構的員工開設基本的零售聯名帳戶。" }
+                ], correct: "B",
+                explain: "AML guidelines mandate that Enhanced Due Diligence (EDD) must be applied when dealing with high-risk customers, including politically exposed persons (PEPs) or high-risk jurisdictions."
+            },
+            {
+                id: 504, topic: "SFO Licensing, Disclosures & AML", type: "standard",
+                q_en: "When evaluating private offshore placement funds, what factor determines whether the intermediary must enforce the full FMCC protocol suite versus general SFO principles?",
+                q_zh: "在評估私人離岸私募基金時，什麼因素決定了中介人必須執行完整的 FMCC 協議套件，還是僅執行一般的《證券及期貨條例》原則？",
+                options: [
+                    { key: "A", en: "Whether the Hong Kong Type 9 intermediary is responsible for the overall management of the fund, serving as the 'Fund Manager' with ultimate de facto discretion.", zh: "該香港第 9 類中介人是否負責基金的整體管理，擔任具有最終實際自由裁量權的「基金經理」。" },
+                    { key: "B", en: "The choice of the fund's functional denomination currency.", zh: "基金職能計價貨幣的選擇。" },
+                    { key: "C", en: "The physical server location where the underlying investment algorithm executes.", zh: "底層投資算法執行的實體服務器位置。" },
+                    { key: "D", en: "Whether the private fund utilizes a prime broker based in North America.", zh: "該私募基金是否使用設在北美洲的總體經紀商。" }
+                ], correct: "A",
+                explain: "The FMCC scope applies to licensed persons whose business involves the management of collective investment schemes. If they hold de facto discretion and management control, the comprehensive FMCC rules trigger fully, regardless of the fund's offshore incorporation."
+            },
 
-            // TOPIC 1: Fund Manager Code of Conduct (FMCC) Core Operations
+            // --- ADDED EXTRA INJECTION SET (30 NEW QUESTIONS) ---
             {
                 id: 105, topic: "FMCC Core Operations", type: "standard",
                 q_en: "Under the FMCC, if a fund manager receives a rebate of brokerage commissions for transactions executed on behalf of a fund, what must it do?",
@@ -278,7 +578,7 @@
                 options: [
                     { key: "A", en: "I, II and III only", zh: "只有 I、II 及 III" },
                     { key: "B", en: "I and IV only", zh: "只有 I 及 IV" },
-                    { key: "C", en: "II and IV only", zh: "只有 II 及 IV" },
+                    { key: "C", en: "II and IV only", zh: "走有 II 及 IV" },
                     { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
                 ], correct: "A",
                 explain: "Allocation policies must be non-discriminatory and fair. Partial fills must be proportional. Favoring performance fee accounts (IV) is a major cherry-picking breach."
@@ -331,8 +631,6 @@
                 ], correct: "B",
                 explain: "Naked or uncovered short selling is prohibited under section 170 of the SFO. All short selling must be covered via appropriate stock borrowing configurations."
             },
-
-            // TOPIC 2: Code on Unit Trusts and Mutual Funds (UT Code) & Public Schemes
             {
                 id: 205, topic: "UT Code & Public Schemes", type: "standard",
                 q_en: "Under the SFC UT Code, what is the maximum permissible limit for a public scheme to invest in securities issued by a single corporate group?",
@@ -417,8 +715,6 @@
                 ], correct: "A",
                 explain: "Cash deposits can only be maintained with authorized banks (AFIs) or eligible international financial institutions to avoid institutional credit risk failures."
             },
-
-            // TOPIC 3: Specialized Fund Vehicles (OFCs & REITs)
             {
                 id: 305, topic: "Specialized Fund Vehicles", type: "standard",
                 q_en: "Who carries out the executive governance and oversight duties of an Open-ended Fund Company (OFC) registered under the SFO?",
@@ -434,7 +730,7 @@
             {
                 id: 306, topic: "Specialized Fund Vehicles", type: "standard",
                 q_en: "Under the OFC rules, a person must not act as a director of an Open-ended Fund Company unless they meet which criterion?",
-                q_zh: "根據 OFC 規則，任何人除非滿足哪項基準，否則不得擔任開放式基金公司的董事？",
+                q_zh: "網絡安全法規。根據 OFC 規則，任何人除非滿足哪項基準，否則不得擔任開放式基金公司的董事？",
                 options: [
                     { key: "A", en: "They must be a licensed Type 9 representative.", zh: "他們必須是持牌的第 9 類代表。" },
                     { key: "B", en: "They must be a natural person who is at least 18 years of age and meets the SFC's criteria of being fit and proper.", zh: "他們必須是年滿 18 歲的自然人，且符合證監會規定的「適當人選」標準。" },
@@ -446,7 +742,7 @@
             {
                 id: 307, topic: "Specialized Fund Vehicles", type: "roman",
                 q_en: "Under the Code on Real Estate Investment Trusts (REITs), an authorized REIT is permitted to invest in which of the following asset structures?",
-                q_zh: "根據《房地產投資信託基金（REITs）守則》，獲認可的 REIT 獲允許投資於下列哪些資產結構？",
+                q_zh: "根據《房地產投資信託基金（REITs）守則），獲認可的 REIT 獲允許投資於下列哪些資產結構？",
                 items_en: [
                     "Income-producing real estate properties (commercial, retail, hotel).",
                     "Uncompleted real estate developments up to 10% of total gross asset value.",
@@ -503,8 +799,6 @@
                 ], correct: "B",
                 explain: "To ensure REITs are stable investment vehicles rather than short-term property trading vehicles, the REIT Code mandates a minimum 2-year holding period for real estate assets."
             },
-
-            // TOPIC 4: Risk Management, Valuation, & Client Agreements
             {
                 id: 405, topic: "Risk & Valuation Frameworks", type: "standard",
                 q_en: "When an asset manager evaluates risk management profiles, who should review and sign off on liquidity stress testing models?",
@@ -589,8 +883,6 @@
                 ], correct: "A",
                 explain: "Performance fees must be transparent. The manager must clearly outline the calculation basis, high-water mark logic, and any hurdle configurations inside the explanatory data pack."
             },
-
-            // TOPIC 5: SFO Licensing, Disclosures, & Anti-Money Laundering (AML)
             {
                 id: 505, topic: "SFO Licensing, Disclosures & AML", type: "standard",
                 q_en: "If an SFC Type 9 licensed corporation provides asset management services to an unlisted private equity fund, does the Fund Manager Code of Conduct (FMCC) apply?",
@@ -675,315 +967,6 @@
                 ], correct: "B",
                 explain: "Type 9 defines asset management relative to regulated securities/futures instruments. Non-securities activities sit outside direct SFC product laws but are evaluated under structural business conduct rules."
             }
-            // TOPIC 1: Fund Manager Code of Conduct (FMCC) Core Operations (Target: 4 Questions)
-            {
-                id: 101, topic: "FMCC Core Operations", type: "standard",
-                q_en: "Under the updated Fund Manager Code of Conduct (FMCC), which structure is strictly required for independent safe custody of authorized fund assets?",
-                q_zh: "根據最新的《基金經理操守準則》（FMCC），獲認可基金資產的獨立妥善保管嚴格需要哪種架構？",
-                options: [
-                    { key: "A", en: "An overseas broker with a basic credit rating wrapper.", zh: "具備基本信用評級包裝的海外經紀商。" },
-                    { key: "B", en: "An independent qualified custodian or functional segregation of the custody structure from the investment management arm.", zh: "獨立的合資格保管人，或將保管架構與投資管理部門進行職能隔離。" },
-                    { key: "C", en: "A self-certified escrow sub-ledger managed by the primary portfolio manager.", zh: "由主要投資組合經理管理的自我認證託管子分類帳。" },
-                    { key: "D", en: "An unregistered private trust entity inside an opaque tax haven.", zh: "不透明稅收天堂內未註冊的私人信託實體。" }
-                ], correct: "B",
-                explain: "The FMCC dictates that a fund manager must ensure the safe custody of fund assets, requiring either an independent qualified custodian or robust functional segregation from investment duties."
-            },
-            {
-                id: 102, topic: "FMCC Core Operations", type: "standard",
-                q_en: "What baseline operational directive must an asset manager enforce when executing a cross-trade between two discretionary client accounts?",
-                q_zh: "資產經理在兩個全權委託客戶帳戶之間執行跨交易（Cross-trade）時，必須執行什麼基線業務指令？",
-                options: [
-                    { key: "A", en: "The trade must be executed at arm's length at current fair market volume value with zero profit/loss skewing, and requires explicit disclosure or prior consent.", zh: "交易必須按照公平條例以當前公平市場價值執行，且利潤/損失無偏斜，並需要明確披露或事先同意。" },
-                    { key: "B", en: "The higher net asset value account must absorb all transaction slippage fees.", zh: "資產淨值較高的帳戶必須吸收所有的交易滑點費用。" },
-                    { key: "C", en: "Cross-trades must always be routed through dark pool networks without statutory tracking logs.", zh: "跨交易必須始終通過沒有法定追踪日誌的暗池網絡進行路由。" },
-                    { key: "D", en: "The manager may collect asymmetrical performance premiums from both sides concurrently.", zh: "經理人可同時向雙方收取不對稱的業績溢價。" }
-                ], correct: "A",
-                explain: "FMCC rules require cross-trades to be in the best interest of both clients, executed at arm's length at current market price, and fully documented with internal approval processes."
-            },
-            {
-                id: 103, topic: "FMCC Core Operations", type: "roman",
-                q_en: "Under the FMCC provisions regarding Soft Dollar arrangements, which of the following goods or services can an asset manager legally accept from brokers?",
-                q_zh: "根據關於軟美元（軟佣金）安排的 FMCC 規定，資產經理可以合法接受經紀商提供的下列哪些商品或服務？",
-                items_en: [
-                    "Specialized macroeconomic investment research software panels.",
-                    "General office furniture and operational administrative utility systems.",
-                    "Direct financial market data feed terminal subscriptions.",
-                    "Corporate travel hospitality expenses and premium client dining vouchers."
-                ],
-                items_zh: [
-                    "專業的宏觀經濟投資研究軟件面板。",
-                    "一般辦公家具和業務行政公用事業系統。",
-                    "直接的金融市場數據饋送終端訂閱。",
-                    "企業旅遊招待費用和高級客戶餐飲券。"
-                ],
-                options: [
-                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
-                    { key: "B", en: "I and III only", zh: "只有 I 及 III" },
-                    { key: "C", en: "II and IV only", zh: "只有 II 及 IV" },
-                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
-                ], correct: "B",
-                explain: "Soft dollars must strictly provide direct, demonstrable benefit to clients (e.g., research, analytical software, market data). General overhead (furniture, travel, entertainment) is strictly prohibited."
-            },
-            {
-                id: 104, topic: "FMCC Core Operations", type: "standard",
-                q_en: "If a Type 9 licensed asset manager delegates investment management functions to an overseas sub-manager, what is the regulatory impact regarding accountability?",
-                q_zh: "如果第 9 類持牌資產經理將投資管理職能委託給海外副經理，關於問責制的監管影響是什麼？",
-                options: [
-                    { key: "A", en: "The primary licensed manager completely sheds all regulatory liabilities to the SFC.", zh: "主要持牌經理完全免除對證監會的所有監管責任。" },
-                    { key: "B", en: "The primary licensed manager remains fully accountable and must exercise continuous effective oversight and due diligence.", zh: "主要持牌經理仍須承擔完整責任，且必須行使持續的有效監督及盡職審查。" },
-                    { key: "C", en: "The arrangement is automatically invalid unless approved by the Financial Secretary.", zh: "除非獲得財政司司長批准，否則該安排自動無效。" },
-                    { key: "D", en: "The sub-manager becomes an automatic Registered Institution without further scrutiny.", zh: "副經理自動成為認可機構，無需進一步審查。" }
-                ], correct: "B",
-                explain: "Delegation does not absolve the primary asset manager of its regulatory duties. Ultimate accountability remains with the SFC licensee, who must monitor the delegate effectively."
-            },
-
-            // TOPIC 2: Code on Unit Trusts and Mutual Funds (UT Code) & Public Schemes (Target: 4 Questions)
-            {
-                id: 201, topic: "UT Code & Public Schemes", type: "standard",
-                q_en: "According to the Code on Unit Trusts and Mutual Funds, what is the standard maximum exposure limit of a public fund's total Net Asset Value (NAV) to a single issuing entity?",
-                q_zh: "根據《單位信託及互惠基金守則》，公開基金對單一發行實體的總資產淨值（NAV）標準最高風險敞口限制是多少？",
-                options: [
-                    { key: "A", en: "5%", zh: "5%" },
-                    { key: "B", en: "10%", zh: "10%" },
-                    { key: "C", en: "15%", zh: "15%" },
-                    { key: "D", en: "25%", zh: "25%" }
-                ], correct: "B",
-                explain: "The core core diversification rule in the UT Code restricts the value of a scheme's holding of securities issued by any single entity to a maximum of 10% of its total NAV."
-            },
-            {
-                id: 202, topic: "UT Code & Public Schemes", type: "roman",
-                q_en: "Under the SFC UT Code investment restrictions, which of the following asset configurations are prohibited or strictly limited for a standard public mutual fund?",
-                q_zh: "在證監會《單位信託及互惠基金守則》投資限制下，下列哪些資產配置對標準公開互惠基金而言是被禁止或受到嚴格限制的？",
-                items_en: [
-                    "Direct investment in physical real estate properties or real estate titles.",
-                    "Unlisted warrants exceeding 10% of total NAV pool allocations.",
-                    "Unlimited exposure to highly illiquid physical commodities markets.",
-                    "Highly diversified listed equities traded on recognized blue-chip exchanges."
-                ],
-                items_zh: [
-                    "直接投資於實體房地產物業或房地產地契。",
-                    "非上市認股權證超過總資產淨值資金池配置的 10%。",
-                    "對高流動性低、實體商品市場的無限風險敞口。",
-                    "在認可藍籌交易所交易的高度多元化上市股票。"
-                ],
-                options: [
-                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
-                    { key: "B", en: "I, II and III only", zh: "只有 I、II 及 III" },
-                    { key: "C", en: "III and IV only", zh: "只有 III 及 IV" },
-                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
-                ], correct: "B",
-                explain: "Public mutual funds cannot invest directly in real estate, are capped at 10% for unlisted warrants, and cannot take unchecked exposure to physical commodities. Diversified equities (IV) are standard and encouraged."
-            },
-            {
-                id: 203, topic: "UT Code & Public Schemes", type: "standard",
-                q_en: "When structuring a Fund-of-Funds (FoF) under SFC authorization, what fee structure configuration is strictly banned to protect retail investors?",
-                q_zh: "在證監會認可下構建基金中的基金（FoF）時，為了保護零售投資者，嚴格禁止哪種費用結構配置？",
-                options: [
-                    { key: "A", en: "Double-charging of management or initial fees at both the top FoF level and the underlying associated schemes.", zh: "在頂層 FoF 級別和底層關聯計劃中同時雙重收取管理費或初始費用。" },
-                    { key: "B", en: "Charging a basic fee structure audited annually by an independent third party.", zh: "收取由獨立第三方每年審計的基本費用結構。" },
-                    { key: "C", en: "Waiving initial sales loads completely for underlying portfolio changes.", zh: "針對底層投資組合變動完全豁免初始銷售費用。" },
-                    { key: "D", en: "Offering variable volume discounts to long-term systemic account holders.", zh: "向長期系統性帳戶持有人提供可變的數量折扣。" }
-                ], correct: "A",
-                explain: "The UT Code prohibits double-charging of initial or management fees by the management company (or its associated entities) across both layers of a Fund-of-Funds."
-            },
-            {
-                id: 204, topic: "UT Code & Public Schemes", type: "standard",
-                q_en: "What is the absolute maximum limit regarding underwriting and sub-underwriting commitments allowed for a public authorized scheme?",
-                q_zh: "公開認可計劃允許的承銷及分承銷承諾的絕對最高限制是多少？",
-                options: [
-                    { key: "A", en: "5% of total fund net asset value.", zh: "總基金資產淨值的 5%。" },
-                    { key: "B", en: "15% of total fund net asset value.", zh: "總基金資產淨值的 15%。" },
-                    { key: "C", en: "30% of total fund net asset value.", zh: "總基金資產淨值的 30%。" },
-                    { key: "D", en: "Underwriting is structurally prohibited under all conditions.", zh: "在任何情況下，結構上都禁止進行承銷。" }
-                ], correct: "B",
-                explain: "The UT Code stipulates that the total value of underwriting or sub-underwriting commitments of a public scheme must not exceed 15% of its total Net Asset Value."
-            },
-
-            // TOPIC 3: Specialized Fund Vehicles (OFCs & REITs) (Target: 4 Questions)
-            {
-                id: 301, topic: "Specialized Fund Vehicles", type: "standard",
-                q_en: "An Open-ended Fund Company (OFC) registered in Hong Kong represents what type of legal and corporate legal vehicle structure?",
-                q_zh: "在香港註冊的開放式基金公司（OFC）代表哪種類型的法律和法人工具結構？",
-                options: [
-                    { key: "A", en: "A basic unincorporated private partnership structure with rigid share capitals.", zh: "具備僵化股本的基本非合夥制私人合夥結構。" },
-                    { key: "B", en: "An open-ended collective investment scheme structured as a corporate entity with variable capital and limited liability.", zh: "構建為具有可變股本及有限責任之法團實體的開放式集體投資計劃。" },
-                    { key: "C", en: "A trust wrapper that requires an unlisted external deed poll for all redemptions.", zh: "所有贖回均需要非上市外部單方契據的信託包裝。" },
-                    { key: "D", en: "A pure statutory entity entirely exempted from corporate tax filing systems.", zh: "完全豁免於公司稅務申報系統的純法定實體。" }
-                ], correct: "B",
-                explain: "OFCs are public or private fund structures set up as a corporate body with variable capital under the SFO, allowing shares to be flexible based on client subscription/redemption."
-            },
-            {
-                id: 302, topic: "Specialized Fund Vehicles", type: "standard",
-                q_en: "According to the SFC's Code on Real Estate Investment Trusts (REITs), what is the mandatory minimum annual net income distribution percentage?",
-                q_zh: "根據證監會的《房地產投資信託基金（REITs）守則》，強制性的最低年度淨收入分配百分比是多少？",
-                options: [
-                    { key: "A", en: "50% payout ratio.", zh: "50% 的派息率。" },
-                    { key: "B", en: "75% payout ratio.", zh: "75% 的派息率。" },
-                    { key: "C", en: "90% payout ratio.", zh: "90% 的派息率。" },
-                    { key: "D", en: "100% complete payout loop.", zh: "100% 的完整派息循環。" }
-                ], correct: "C",
-                explain: "The REIT Code explicitly mandates that an authorized REIT must distribute to unitholders as dividends each year an amount that is no less than 90% of its net audited income after tax."
-            },
-            {
-                id: 303, topic: "Specialized Fund Vehicles", type: "roman",
-                q_en: "Which of the following legal rules accurately state the statutory borrowing ceilings and structural leverages for public Open-ended Fund Companies (OFCs)?",
-                q_zh: "下列哪些法律規則準確地陳述了公開開放式基金公司（OFC）的法定借貸上限及結構性槓桿？",
-                items_en: [
-                    "Borrowings may be executed for temporary liquidity or redemption funding.",
-                    "Total bank borrowings cannot exceed 10% of the public scheme's total NAV.",
-                    "OFC directors can pledge corporate assets without limitation to secure personal capital.",
-                    "Private OFCs enjoy customized, higher statutory borrowing ratios compared to public ones."
-                ],
-                items_zh: [
-                    "可為臨時流動性或贖回資金執行借款。",
-                    "總銀行借款不能超過公開計劃總資產淨值的 10%。",
-                    "OFC 董事可以無限制抵押公司資產以獲取個人資金。",
-                    "與公開 OFC 相比，私人 OFC 享有定制的、更高的法定借貸比例。"
-                ],
-                options: [
-                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
-                    { key: "B", en: "I, II and IV only", zh: "只有 I、II 及 IV" },
-                    { key: "C", en: "III and IV only", zh: "只有 III 及 IV" },
-                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
-                ], correct: "B",
-                explain: "Public OFCs are limited to 10% borrowing of NAV for temporary liquidity under standard rules. Private OFCs have higher structural flexibility defined in their instrument of incorporation. Directors pledging assets for personal cash (III) is illegal."
-            },
-            {
-                id: 304, topic: "Specialized Fund Vehicles", type: "standard",
-                q_en: "What specific operational rule governs the appointment of a custodian for an SFC authorized public OFC?",
-                q_zh: "哪項特定業務規則管理證監會認可公開 OFC 保管人的任命？",
-                options: [
-                    { key: "A", en: "The custodian must be completely independent of the investment manager and meet capital resource requirements akin to traditional unit trust trustees.", zh: "保管人必須完全獨立於投資經理，且滿足類似於傳統單位信託受託人的資本資源要求。" },
-                    { key: "B", en: "Any licensed representative with an active Type 1 registration can act as a custodian.", zh: "任何持有有效第 1 類註冊的持牌代表均可擔任保管人。" },
-                    { key: "C", en: "The custodian role can be performed directly by the core portfolio software engine.", zh: "保管人職能可直接由核心投資組合軟件引擎執行。" },
-                    { key: "D", en: "A public OFC is explicitly exempted from hiring an external custodian.", zh: "公開 OFC 被明確豁免聘請外部保管人。" }
-                ], correct: "A",
-                explain: "The SFO and OFC Rules require an independent qualified custodian that fits specified credit and asset safety eligibility requirements to safeguard public corporate fund assets."
-            },
-
-            // TOPIC 4: Risk Management, Valuation, & Client Agreements (Target: 4 Questions)
-            {
-                id: 401, topic: "Risk & Valuation Frameworks", type: "standard",
-                q_en: "Under the risk management mandates, what is the required statutory frequency for performing liquidity stress testing on complex portfolio pools?",
-                q_zh: "在風險管理指令下，對複雜投資組合資金池進行流動性壓力測試的法定要求頻率是多少？",
-                options: [
-                    { key: "A", en: "Once every fiscal cycle closing window.", zh: "每個財政週期關閉窗口一次。" },
-                    { key: "B", en: "Regularly and systematically, typically at least monthly, or more frequently if required by shifting market conditions.", zh: "定期且系統性地進行，通常至少每月一次，如果市場條件發生變化，則須提高頻率。" },
-                    { key: "C", en: "Only when explicitly demanded by an independent external court order.", zh: "僅在獨立外部法院命令明確要求時才進行。" },
-                    { key: "D", en: "Once every calendar decade.", zh: "每曆年十年一次。" }
-                ], correct: "B",
-                explain: "The SFC emphasizes that fund managers must establish internal stress-testing systems to evaluate liquidity. Testing must be regular and adaptive, practically at least monthly."
-            },
-            {
-                id: 402, topic: "Risk & Valuation Frameworks", type: "roman",
-                q_en: "To ensure fair treatment of fund investors, an asset manager's valuation framework must incorporate which structural controls?",
-                q_zh: "為了確保護盤投資者獲得公平對待，資產經理的估值架構必須納入哪些結構性控制？",
-                items_en: [
-                    "Complete functional independence of the valuation process from the portfolio management team.",
-                    "Consistent apply-through of valuation methodologies verified by an independent auditor.",
-                    "Discretionary adjustment of asset values by frontline traders to maximize trailing performance.",
-                    "Clear escalation channels for tracking and correcting material net asset value pricing calculation errors."
-                ],
-                items_zh: [
-                    "估值流程與投資組合管理團隊之間完全的職能獨立性。",
-                    "一致應用經獨立審計師驗證的估值方法。",
-                    "前線交易員自行調控資產價值以最大化追蹤業績。",
-                    "清晰的升級渠道，用以追踪及糾正重大的資產淨值定價計算錯誤。"
-                ],
-                options: [
-                    { key: "A", en: "I and III only", zh: "只有 I 及 III" },
-                    { key: "B", en: "I, II and IV only", zh: "只有 I、II 及 IV" },
-                    { key: "C", en: "II and IV only", zh: "只有 II 及 IV" },
-                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
-                ], correct: "B",
-                explain: "Valuation processes must be segregated from investment decision-making (traders cannot manually alter prices to inflate performance, rendering III false). Regular audits and error-correction protocols are required."
-            },
-            {
-                id: 403, topic: "Risk & Valuation Frameworks", type: "standard",
-                q_en: "Which element is strictly prohibited from being included inside an official Investment Management Agreement (IMA) between a Type 9 licensee and a client?",
-                q_zh: "第 9 類持牌人與客戶之間的官方投資管理協議（IMA）中，嚴格禁止包含以下哪個要素？",
-                options: [
-                    { key: "A", en: "An explicit schedule outlining basic corporate management fee calculations.", zh: "列出基本公司管理費計算的明確明細表。" },
-                    { key: "B", en: "A formal absolute guarantee of investment returns or profit performance thresholds.", zh: "對投資回報或利潤業績門檻的正式絕對保證。" },
-                    { key: "C", en: "Detailed risk risk parameters matching the client's objective baseline.", zh: "與客戶目標基線匹配的詳細風險參數。" },
-                    { key: "D", en: "Procedures defining legal mediation routes if operational disputes trigger.", zh: "界定如果引發業務糾紛時法律調解途徑的程序。" }
-                ], correct: "B",
-                explain: "Under the Code of Conduct and general regulations, guarantees of performance or absolute return profit thresholds are strictly prohibited as they constitute false or misleading market representations."
-            },
-            {
-                id: 404, topic: "Risk & Valuation Frameworks", type: "standard",
-                q_en: "For discretionary account arrangements, what is the mandatory minimum distribution frequency for providing account statements to clients?",
-                q_zh: "對於全權委託帳戶安排，向客戶提供帳戶報表（結單）的強制性最低發放頻率是多少？",
-                options: [
-                    { key: "A", en: "Within 2 operational business days after every transaction loop.", zh: "在每次交易循環後之 2 個業務日之內。" },
-                    { key: "B", en: "Monthly basis distribution.", zh: "按月發放。" },
-                    { key: "C", en: "Quarterly tracking packets only.", zh: "僅限季度追踪數據包。" },
-                    { key: "D", en: "Annually within the corporate tax filing report envelope.", zh: "公司稅務申報報告封套內每年一次。" }
-                ], correct: "B",
-                explain: "The Securities and Futures (Contract Notes, Statements of Account and Receipts) Rules dictate that statements must be sent to discretionary clients on a monthly basis."
-            },
-
-            // TOPIC 5: SFO Licensing, Disclosures, & Anti-Money Laundering (AML) (Target: 4 Questions)
-            {
-                id: 501, topic: "SFO Licensing, Disclosures & AML", type: "standard",
-                q_en: "Under what specific statutory scenario can an asset management corporation escape holding a Type 9 license for portfolio operations?",
-                q_zh: "在何種特定法定場景下，資產管理公司可免於持有第 9 類牌照而進行投資組合營運？",
-                options: [
-                    { key: "A", en: "The corporation manages assets exclusively for its wholly-owned parent holding company, its wholly-owned subsidiaries, or fellow wholly-owned subsidiaries (Intra-group exemption).", zh: "該公司完全為其全資母控股公司、其全資附屬公司或同屬全資附屬公司的公司管理資產（集團內豁免）。" },
-                    { key: "B", en: "The asset pool contains fewer than 50 individual high-net-worth retail names.", zh: "資產池包含少於 50 個獨立的高淨值零售名單。" },
-                    { key: "C", en: "The management team executes transactions using encrypted blockchain frameworks.", zh: "管理團隊利用加密區塊鏈架構執行交易。" },
-                    { key: "D", en: "All equity positions are focused exclusively on listed infrastructure utilities.", zh: "所有股票部位均完全集中在上市基礎設施公用事業。" }
-                ], correct: "A",
-                explain: "The SFO provides an intra-group exemption for Type 9 licensing if the corporation provides asset management services solely to its group companies (wholly-owned relations)."
-            },
-            {
-                id: 502, topic: "SFO Licensing, Disclosures & AML", type: "roman",
-                q_en: "Under SFO Part XV substantial shareholder notification rules, what critical mechanical restriction applies when calculating derivative long/short exposures?",
-                q_zh: "根據《證券及期貨條例》第 XV 部大股東通知規則，在計算衍生工具長/短倉風險敞口時，適用什麼關鍵的機制限制？",
-                items_en: [
-                    "Long derivative exposure stakes cannot be offset or netted off against short derivative exposure stakes.",
-                    "Both short and long positions must be tracked independently and aggregated separately.",
-                    "Short derivative positions are completely exempted from notification if they fall below 5%.",
-                    "Netting is allowed exclusively if the positions are matched inside the clearing system on the same trading session."
-                ],
-                items_zh: [
-                    "衍生工具的長倉權益不能與衍生工具的短倉權益相互抵銷或淨額結算。",
-                    "空頭（短倉）和多頭（長倉）部位必須獨立追蹤並分開累計。",
-                    "如果短倉部位低於 5%，則完全豁免通知義務。",
-                    "僅當部位在同一交易時段內的結算系統內匹配時，才允許淨額結算。"
-                ],
-                options: [
-                    { key: "A", en: "I and II only", zh: "只有 I 及 II" },
-                    { key: "B", en: "III and IV only", zh: "只有 III 及 IV" },
-                    { key: "C", en: "I and IV only", zh: "只有 I 及 IV" },
-                    { key: "D", en: "I, II, III and IV", zh: "I、II、III 及 IV 全對" }
-                ], correct: "A",
-                explain: "Part XV rules for disclosure of interests state that long and short positions cannot be netted off. They represent separate percentages and both require accurate calculations and disclosure."
-            },
-            {
-                id: 503, topic: "SFO Licensing, Disclosures & AML", type: "standard",
-                q_en: "Which onboarding scenario triggers an absolute statutory requirement to execute Enhanced Due Diligence (EDD) under AML regulations?",
-                q_zh: "根據打擊洗錢法規，哪種入職場景會引發執行增強型盡職審查（EDD）的絕對法定要求？",
-                options: [
-                    { key: "A", en: "A standard corporate account registered locally with a transparent ownership framework.", zh: "在本地註冊且所有權架構透明的標準公司帳戶。" },
-                    { key: "B", en: "The client is identified as a Politically Exposed Person (PEP) or originates from a high-risk jurisdiction blacklisted for terrorist financing.", zh: "客戶被識別為政治人物（PEP），或來自被列入恐怖分子籌資黑名單的高風險管轄區。" },
-                    { key: "C", en: "An institutional client routing trades through mainstream clearing hubs.", zh: "通過主流結算中心路由交易的機構客戶。" },
-                    { key: "D", en: "An employee of an authorized financial institution opening a basic retail joint account.", zh: "認可財務機構的員工開設基本的零售聯名帳戶。" }
-                ], correct: "B",
-                explain: "AML guidelines mandate that Enhanced Due Diligence (EDD) must be applied when dealing with high-risk customers, including politically exposed persons (PEPs) or high-risk jurisdictions."
-            },
-            {
-                id: 504, topic: "SFO Licensing, Disclosures & AML", type: "standard",
-                q_en: "When evaluating private offshore placement funds, what factor determines whether the intermediary must enforce the full FMCC protocol suite versus general SFO principles?",
-                q_zh: "在評估私人離岸私募基金時，什麼因素決定了中介人必須執行完整的 FMCC 協議套件，還是僅執行一般的《證券及期貨條例》原則？",
-                options: [
-                    { key: "A", en: "Whether the Hong Kong Type 9 intermediary is responsible for the overall management of the fund, serving as the 'Fund Manager' with ultimate de facto discretion.", zh: "該香港第 9 類中介人是否負責基金的整體管理，擔任具有最終實際自由裁量權的「基金經理」。" },
-                    { key: "B", en: "The choice of the fund's functional denomination currency.", zh: "基金職能計價貨幣的選擇。" },
-                    { key: "C", en: "The physical server location where the underlying investment algorithm executes.", zh: "底層投資算法執行的實體服務器位置。" },
-                    { key: "D", en: "Whether the private fund utilizes a prime broker based in North America.", zh: "該私募基金是否使用設在北美洲的總體經紀商。" }
-                ], correct: "A",
-                explain: "The FMCC scope applies to licensed persons whose business involves the management of collective investment schemes. If they hold de facto discretion and management control, the comprehensive FMCC rules trigger fully, regardless of the fund's offshore incorporation."
-            }
         ];
 
         let activeQuestions = [];
@@ -998,20 +981,13 @@
         function getTopicBalancedQuestions() {
             let balancedSelection = [];
             
-            // Loop through each required regulatory domain topic
             TOPICS_MAPPING.forEach(topicRule => {
-                // Filter question pool for specific topic
                 let topicPool = questionBank.filter(q => q.topic === topicRule.name);
-                
-                // Shuffle current sub-pool
                 let shuffledPool = [...topicPool].sort(() => 0.5 - Math.random());
-                
-                // Extract required exact slice count to ensure balanced weight distribution
                 let selection = shuffledPool.slice(0, topicRule.count);
                 balancedSelection = balancedSelection.concat(selection);
             });
 
-            // Do a final random mix of the 20 questions so the topics are integrated together naturally
             return balancedSelection.sort(() => 0.5 - Math.random());
         }
 
@@ -1026,7 +1002,6 @@
             document.getElementById('submit-exam-btn').style.display = 'inline-block';
             document.getElementById('results-screen').style.display = 'none';
             
-            // GET TOPIC BALANCED SELECTION (20 Total)
             activeQuestions = getTopicBalancedQuestions();
             renderQuiz();
         }
